@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>{:lang('h-product')}</title>
+	<link rel="stylesheet" href="/static/style/index.css"></link>
+	<!-- Link Swiper's CSS -->
+    <link rel="stylesheet" href="/static/swiper/swiper-bundle.min.css" />
+</head>
+<body>
+	<div class="product_detail base">
+		<div class="header">
+			<div class="container header-container">
+				<div class="logo"></div>
+				<ul class="header-nav">
+					<a href="{:url('website')}">
+						<li>{:lang('h-home')}</li>
+					</a>
+					<a href="{:url('website/about')}">
+						<li>{:lang('h-about')}</li>
+					</a>
+					<a href="{:url('website/product')}">
+						<li class="current">{:lang('h-product')}</li>
+					</a>
+					<a href="{:url('website/exhibition')}">
+						<li>{:lang('h-exhibition')}</li>
+					</a>
+					<a href="{:url('website/contact')}">
+						<li>{:lang('h-contact')}</li>
+					</a>
+				</ul>
+			</div>
+		</div>
+
+		<div class="detail_box container">
+			<div class="sw-box-main">
+				<!-- <img src="/static/images/product_detail/product-detail.png" alt="detail"> -->
+				<!-- Swiper -->
+				<div
+					style="--swiper-navigation-color: #177c3e; --swiper-pagination-color: #177c3e"
+					class="swiper bigSwiper mainSwiper"
+				>
+					<div class="swiper-wrapper">
+						<div class="swiper-slide">
+							<img src="{$productItem.prd_pic[0]['url']  | default='' }" width="550px" height="550px" alt="detail">
+						</div>
+						{voList name='productEffectPic' id="item"}
+						<div class="swiper-slide">
+							<img src="{$item['url']  | default='' }" width="550px" height="550px" alt="detail">
+						</div>
+						{/voList}
+					</div>
+					<div class="swiper-button-next main-swiper-button-next"></div>
+					<div class="swiper-button-prev main-swiper-button-prev"></div>
+				</div>
+			</div>
+
+			<div class="info-box">
+				<div class="name">{$productItem.prd_modelname}</div>
+				<div class="desc-box">
+					<div class="col">
+						<div class="label">{:lang('product_description')}：</div>
+						{voList name='productDescription' id='textItem'}
+						<div class="content dot">{$textItem}</div>
+						{/voList}
+					</div>
+					<div class="col">
+						<div class="row mb40">
+							<span class="label">{:lang('product_packaging')}：</span>
+							<span class="content">{$productItem.prd_packaging}</span>
+						</div>
+						<?php if($nowlang !== 'en-us'){
+						?>
+						<div class="row mb40">
+							<span class="label">{:lang('product_caton_num')}：</span>
+							<span class="content">{$productItem.prd_count}</span>
+						</div>
+						<?php
+						}?>
+
+						<div class="row">
+							<span class="label">{:lang('product_caton_size')}（cm）：</span>
+							<span class="content">{$productItem.prd_size}</span>
+						</div>
+					</div>
+				</div>
+				<div class="image-row">
+					<div class="label">{:lang('product_spray_effect')}：</div>
+					<div class="images sw-box-thumb">
+
+						<div thumbsSlider="" class="swiper thumbSwiper">
+							<div class="swiper-wrapper">
+								<div class="swiper-slide">
+									<img src="{$productItem.prd_pic[0]['url']  | default='' }" alt="detail">
+								</div>
+								{voList name='productEffectPic' id="item"}
+								<div class="swiper-slide">
+									<img src="{$item['url']  | default='' }" alt="detail">
+								</div>
+								{/voList}
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	
+		<div class="footer">
+			<div class="container">
+				<div class="logo-box">
+					<div class="logo"></div>
+					<div class="name">{:lang('f-company_name')}</div>
+				</div>
+				<div class="link-box">
+					<a href="{:url('website')}" class="link bold mb30">{:lang('h-home')}</a>
+					<a href="{:url('about')}" class="link bold">{:lang('h-about')}</a>
+					<a href="{:url('about')}" class="link">{:lang('f-company_intro')}</a>
+					<a href="{:url('about')}" class="link">{:lang('f-company_culture')}</a>
+					<a href="{:url('about')}" class="link">{:lang('f-development_history')}</a>
+				</div>
+				<div class="link-box">
+					<a href="{:url('product')}" class="link bold">{:lang('h-product')}</a>
+					<a href="{:url('product')}" class="link">{:lang('p-new')}</a>
+					<a href="{:url('product')}" class="link">{$categoryList[0]['category_name'] | default=''}</a>
+					<a href="{:url('product')}" class="link">{$categoryList[1]['category_name'] | default=''}</a>
+					<a href="{:url('product')}" class="link">{$categoryList[2]['category_name'] | default=''}</a>
+					<a href="{:url('product')}" class="link">{$categoryList[3]['category_name'] | default=''}</a>
+				</div>
+				<div class="link-box">
+					<a href="{:url('product')}" class="link">{$categoryList[4]['category_name'] | default=''}</a>
+					<a href="{:url('product')}" class="link">{$categoryList[5]['category_name'] | default=''}</a>
+					<a href="{:url('product')}" class="link">{$categoryList[6]['category_name'] | default=''}</a>
+					<a href="{:url('product')}" class="link">{$categoryList[7]['category_name'] | default=''}</a>
+					<a href="{:url('product')}" class="link">{$categoryList[8]['category_name'] | default=''}</a>
+					<a href="{:url('product')}" class="link">{:lang('p-other')}</a>
+				</div>
+				<div class="link-box">
+					<a href="{:url('exhibition')}" class="link bold">{:lang('h-exhibition')}</a>
+					<a href="{:url('contact')}" class="link bold">{:lang('h-contact')}</a>
+					<div class="icons">
+						<div class="icon wechat"></div>
+						<div class="icon facebook"></div>
+					</div>
+				</div>
+
+				<div class="qr-box">
+					<div class="qr-code"></div>
+					<div class="text">{:lang('f-follow_us')}</div>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+	
+	<!-- Swiper JS -->
+    <script src="/static/swiper/swiper-bundle.min.js"></script>
+
+    <!-- Initialize Swiper -->
+    <script>
+      var thumbSwiper = new Swiper(".thumbSwiper", {
+        // loop: true,
+        spaceBetween: 10,
+		// slidesPerView: '$count',
+		slidesPerView: 5,
+        freeMode: true,
+        watchSlidesProgress: true,
+      });
+      var mainSwiper = new Swiper(".mainSwiper", {
+        loop: true,
+        spaceBetween: 10,
+        navigation: {
+          nextEl: ".main-swiper-button-next",
+          prevEl: ".main-swiper-button-prev",
+        },
+        thumbs: {
+          swiper: thumbSwiper,
+        },
+      });
+    </script>
+</body>
+</html>

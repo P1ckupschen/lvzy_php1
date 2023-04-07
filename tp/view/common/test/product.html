@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+</head>
+<body>
+<!--    类型标签-->
+<div>
+    <div>
+        {foreach $categoryList as $category}
+        <a  href="?categoryid={$category['category_id']}" class="tag">{$category['category_name']}</a>
+        {/foreach}
+    </div>
+    <!--        对应类型的产品图片和型号名称-->
+    <div class="pics" style="display: flex">
+        {foreach $prdList as $product}
+        <div>
+            <img src="{$product.prd_pic[0]['url'] | default='' }" width="100px" height="100px">
+            <div >{$product.prd_modelname}</div>
+            <a href="?prdid={$product['prd_id']}" class="tag">产品详情</a>
+        </div>
+        {/foreach}
+    </div>
+</div>
+<!--        跳转后的产品详情页面-->
+<div>
+    <div>{$productItem.prd_modelname}</div>
+    <div>{$productItem.prd_size}</div>
+    <div>{$productItem.prd_packaging}</div>
+    <div>{$productItem.prd_count}</div>
+    <div><img src="{$productItem.prd_pic[0]['url']  | default='' }"width="100px" height="100px"></div>
+
+    <div style="display: flex">
+        {voList name='productEffectPic' id="item"}
+        <div>
+            <img src="{$item['url']  | default='' }  " width="150px" height="150px" >
+        </div>
+        {/voList}
+    </div>
+    {voList name='productDescription' id='textItem'}
+    <li >{$textItem}</li>
+    {/voList}
+    <!--        描述信息用逗号分开？-->
+</div>
+<span id="s">!!!!!!!!!!!!!!!</span>
+<button id="btn">新建页面</button>
+<button id="close">关闭页面</button>
+<script type="text/javascript">
+    window.onload  = function () {
+        document.getElementById("s").style.color = "green";
+        var btn = document.getElementById('btn');
+        btn.onclick = function () {
+            var page = window.open("http://www.baidu.com");
+        }
+        var close = document.getElementById('close');
+        close.onclick = function () {
+            // window.close();
+            setTimeout('confirm("是否确定")',1000);
+            // prompt('测试prompt')
+        }
+        btn.addEventListener('mouseover',function () {
+            alert('1')
+        },false);
+        var bg = document.getElementById('bg');
+    }
+
+    $(document).ready(function(){
+        $("#btn1").click(function(){
+            alert("Text: " + $("#test").text());
+        });
+        $("#btn2").click(function(){
+            alert("HTML: " + $("#test").html());
+        });
+    });
+
+</script>
+<div id="bg">bg</div>
+<p id="test">这是段落中的<b>粗体</b>文本。</p>
+<button id="btn1">显示文本</button>
+<button id="btn2">显示 HTML</button>
+</body>
+<script>
+    // $(function(){
+    //     console.log($("#btn1"))
+    //     $("#btn1").click(function(){
+    //         alert("Text: " + $("#test").text());
+    //     });
+    //     $("#btn2").click(function(){
+    //         alert("HTML: " + $("#test").html());
+    //     });
+    // })
+</script>
+</html>

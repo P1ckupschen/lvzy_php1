@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>{:lang('h-exhibition')}</title>
+	<link rel="stylesheet" href="/static/style/index.css"></link>
+
+	<!-- layui.css -->
+	<link rel="stylesheet" href="/static/layui/css/layui.css">
+</head>
+<body>
+	<div class="exhibition base">
+		<div class="header">
+			<div class="container header-container">
+				<div class="logo"></div>
+				<ul class="header-nav">
+					<a href="{:url('website')}">
+						<li>{:lang('h-home')}</li>
+					</a>
+					<a href="{:url('website/about')}">
+						<li>{:lang('h-about')}</li>
+					</a>
+					<a href="{:url('website/product')}">
+						<li>{:lang('h-product')}</li>
+					</a>
+					<a href="{:url('website/exhibition')}">
+						<li class="current">{:lang('h-exhibition')}</li>
+					</a>
+					<a href="{:url('website/contact')}">
+						<li>{:lang('h-contact')}</li>
+					</a>
+				</ul>
+			</div>
+		</div>
+
+		<div class="banner">
+			<div class="underline-title" style="color: #fff;">{:lang('exhibition_news')}</div>
+		</div>
+
+		<div class="list container">
+			{foreach $exhibitionList as $exhibition}
+			<div class="list-item">
+				<div class="img-wrapper">
+					<img src="{$exhibition.exhibition_pic[0]['url'] | default='' }" alt="pic" style="width: 334px;height: 210px">
+				</div>
+				<div class="info-box">
+					<div class="title">{$exhibition.exhibition_title}</div>
+					<div class="content">{:lang('first_phase')}，{$exhibition.exhibition_phaseone}，{:lang('booth_number')}：{$exhibition.exhibition_boothone}</div>
+					<div class="content">{:lang('second_phase')}，{$exhibition.exhibition_phasetwo}，{:lang('booth_number')}：{$exhibition.exhibition_boothtwo}</div>
+					<div class="date">{:lang('post_date')}：{$exhibition.created_time}</div>
+				</div>
+			</div>
+			{/foreach}
+		</div>
+
+		<div class="pagination">
+			<div id="page"></div>
+		</div>
+	
+		<div class="footer">
+			<div class="container">
+				<div class="logo-box">
+					<div class="logo"></div>
+					<div class="name">{:lang('f-company_name')}</div>
+				</div>
+				<div class="link-box">
+					<a href="{:url('website')}" class="link bold mb30">{:lang('h-home')}</a>
+					<a href="{:url('about')}" class="link bold">{:lang('h-about')}</a>
+					<a href="{:url('about')}" class="link">{:lang('f-company_intro')}</a>
+					<a href="{:url('about')}" class="link">{:lang('f-company_culture')}</a>
+					<a href="{:url('about')}" class="link">{:lang('f-development_history')}</a>
+				</div>
+				<div class="link-box">
+					<a href="{:url('product')}" class="link bold">{:lang('h-product')}</a>
+					<a href="{:url('product')}" class="link">{:lang('p-new')}</a>
+					<a href="{:url('product')}" class="link">{$categoryList[0]['category_name'] | default=''}</a>
+					<a href="{:url('product')}" class="link">{$categoryList[1]['category_name'] | default=''}</a>
+					<a href="{:url('product')}" class="link">{$categoryList[2]['category_name'] | default=''}</a>
+					<a href="{:url('product')}" class="link">{$categoryList[3]['category_name'] | default=''}</a>
+				</div>
+				<div class="link-box">
+					<a href="{:url('product')}" class="link">{$categoryList[4]['category_name'] | default=''}</a>
+					<a href="{:url('product')}" class="link">{$categoryList[5]['category_name'] | default=''}</a>
+					<a href="{:url('product')}" class="link">{$categoryList[6]['category_name'] | default=''}</a>
+					<a href="{:url('product')}" class="link">{$categoryList[7]['category_name'] | default=''}</a>
+					<a href="{:url('product')}" class="link">{$categoryList[8]['category_name'] | default=''}</a>
+					<a href="{:url('product')}" class="link">{:lang('p-other')}</a>
+				</div>
+				<div class="link-box">
+					<a href="{:url('exhibition')}" class="link bold">{:lang('h-exhibition')}</a>
+					<a href="{:url('contact')}" class="link bold">{:lang('h-contact')}</a>
+					<div class="icons">
+						<div class="icon wechat"></div>
+						<div class="icon facebook"></div>
+					</div>
+				</div>
+
+				<div class="qr-box">
+					<div class="qr-code"></div>
+					<div class="text">{:lang('f-follow_us')}</div>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+
+
+	<!-- layui js -->
+	<script src="/static/layui/layui.js"></script>
+	<script>
+		function getUrlParams(url) {
+			// 通过 ? 分割获取后面的参数字符串
+			let urlStr = url.split('?')[1];
+			// 创建空对象存储参数
+			let obj = {};
+			// 再通过 & 将每一个参数单独分割出来
+			if(urlStr!=null){
+				// 再通过 = 将每一个参数分割为 key:value 的形式
+				let arr = urlStr.split('=');
+				obj[arr[0]] = arr[1];
+				return obj;
+			}else {
+				obj['pagenum']=1;
+				return obj;
+			}
+		}
+		layui.use('laypage', () => {
+			var laypage = layui.laypage;
+			var url = window.location.toString();
+			var params = getUrlParams(url);
+			//执行一个laypage实例
+			laypage.render({
+				elem: 'page', //注意，这里的 page 是 ID，不用加 # 号
+				count: '<?php echo $total ?>', //数据总数，从服务端得到
+				theme: '#177c3e', //自定义样式
+				limit:3,
+				curr:params.pagenum,
+				first: "{:lang('page_first')}", //显示首页
+				last: "{:lang('page_last')}", //显示尾页
+				prev: "{:lang('page_prev')}",
+				next: "{:lang('page_next')}",
+				jump: (obj, first) => {
+					//obj包含了当前分页的所有参数，比如：
+					console.log(obj.curr); //得到当前页，以便向服务端请求对应页的数据。
+					console.log(obj.limit); //得到每页显示的条数
+
+					//首次不执行
+					if(!first){
+						window.location.href=`/index.php/website/exhibition?pagenum=${obj.curr}`;
+						//do something
+					}
+				}
+			});
+		});
+	</script>
+	
+</body>
+</html>

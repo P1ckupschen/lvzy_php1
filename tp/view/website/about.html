@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>{:lang('h-about')}</title>
+	<link rel="stylesheet" href="/static/style/index.css"></link>
+<!--								__STATIC__  替换'/static' 会改变地址-->
+</head>
+<body>
+	<div class="about base">
+		<div class="header">
+			<div class="container header-container">
+				<div class="logo"></div>
+				<ul class="header-nav">
+					<a href="{:url('website')}">
+						<li>{:lang('h-home')}</li>
+					</a>
+					<a href="{:url('website/about')}">
+						<li class="current">{:lang('h-about')}</li>
+					</a>
+					<a href="{:url('website/product')}">
+						<li>{:lang('h-product')}</li>
+					</a>
+					<a href="{:url('website/exhibition')}">
+						<li>{:lang('h-exhibition')}</li>
+					</a>
+					<a href="{:url('website/contact')}">
+						<li>{:lang('h-contact')}</li>
+					</a>
+				</ul>
+			</div>
+		</div>
+
+		<div class="banner">
+			<div class="container"></div>
+		</div>
+
+		<div class="container-bg">
+			<div class="info-box container">
+				<div class="logo"></div>
+				<div class="underline-title">{:lang('f-company_name')}</div>
+				{foreach $aboutArticle as $item}
+				<div class="info-text">
+					{$item}
+				</div>
+				{/foreach}
+				<div class="number-box">
+					<div class="number-item">
+						<div class="row">
+							<div class="num">20000</div>
+							<div class="unit">㎡</div>
+						</div>
+						<div class="text">{:lang('total_area')}</div>
+					</div>
+					<div class="divide-line"></div>
+					<div class="number-item">
+						<div class="row">
+							<div class="num">11000</div>
+							<div class="unit">㎡</div>
+						</div>
+						<div class="text">{:lang('phase_one_construction')}</div>
+					</div>
+					<div class="divide-line"></div>
+					<div class="number-item">
+						<div class="row">
+							<div class="num">10</div>
+							<div class="unit">+</div>
+						</div>
+						<div class="text">{:lang('product_series')}</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="banner2">
+			<div class="label-box">
+				<div class="logo">
+					<img src="/static/images/icons/icon1.png" alt="icon1">
+				</div>
+				<div class="label">{:lang('core_value')}</div>
+				<div class="content">{:lang('core_value_detail')}</div>
+			</div>
+			<div class="label-box">
+				<div class="logo">
+					<img src="/static/images/icons/icon2.png" alt="icon2">
+				</div>
+				<div class="label">{:lang('core_concept')}</div>
+				<div class="content">{:lang('core_concept_detail')}</div>
+			</div>
+			<div class="label-box">
+				<div class="logo">
+					<img src="/static/images/icons/icon3.png" alt="icon3">
+				</div>
+				<div class="label">{:lang('entrepreneurial_spirit')}</div>
+				<div class="content">{:lang('entrepreneurial_spirit_detail')}</div>
+			</div>
+			<div class="label-box">
+				<div class="logo">
+					<img src="/static/images/icons/icon4.png" alt="icon4">
+				</div>
+				<div class="label">{:lang('strategic_goal')}</div>
+				<div class="content">{:lang('strategic_goal_detail')}</div>
+			</div>
+		</div>
+
+		<div class="container-bg">
+			<div class="workshop-box container">
+				<div class="underline-title">{:lang('workshop_equipment')}</div>
+				<div class="row">
+
+					<div class="img-big">
+						<img src="{$equipmentPicList[0]['url'] |default = '' }" onerror="this.src='/static/images/about/workshop1.png'" width="712px" height="618px"alt="workshopimg1">
+					</div>
+					<div class="col">
+						<div class="img-small">
+							<img src="{$equipmentPicList[1]['url']|default = '' }" onerror="this.src='/static/images/about/workshop2.png'" width="471px" height="299px" alt="workshopimg1">
+						</div>
+						<div class="img-small">
+							<img src="{ $equipmentPicList[2]['url']|default = '' }" onerror="this.src='/static/images/about/workshop3.png'" width="471px" height="299px" alt="workshopimg1">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="footer">
+			<div class="container">
+				<div class="logo-box">
+					<div class="logo"></div>
+					<div class="name">{:lang('f-company_name')}</div>
+				</div>
+				<div class="link-box">
+					<a href="{:url('website')}" class="link bold mb30">{:lang('h-home')}</a>
+					<a href="{:url('about')}" class="link bold">{:lang('h-about')}</a>
+					<a href="{:url('about')}" class="link">{:lang('f-company_intro')}</a>
+					<a href="{:url('about')}" class="link">{:lang('f-company_culture')}</a>
+					<a href="{:url('about')}" class="link">{:lang('f-development_history')}</a>
+				</div>
+				<div class="link-box">
+					<a href="{:url('product')}" class="link bold">{:lang('h-product')}</a>
+					<a href="{:url('product')}" class="link">{:lang('p-new')}</a>
+					<a href="{:url('product')}" class="link">{$categoryList[0]['category_name'] | default=''}</a>
+					<a href="{:url('product')}" class="link">{$categoryList[1]['category_name'] | default=''}</a>
+					<a href="{:url('product')}" class="link">{$categoryList[2]['category_name'] | default=''}</a>
+					<a href="{:url('product')}" class="link">{$categoryList[3]['category_name'] | default=''}</a>
+				</div>
+				<div class="link-box">
+					<a href="{:url('product')}" class="link">{$categoryList[4]['category_name'] | default=''}</a>
+					<a href="{:url('product')}" class="link">{$categoryList[5]['category_name'] | default=''}</a>
+					<a href="{:url('product')}" class="link">{$categoryList[6]['category_name'] | default=''}</a>
+					<a href="{:url('product')}" class="link">{$categoryList[7]['category_name'] | default=''}</a>
+					<a href="{:url('product')}" class="link">{$categoryList[8]['category_name'] | default=''}</a>
+					<a href="{:url('product')}" class="link">{:lang('p-other')}</a>
+				</div>
+				<div class="link-box">
+					<a href="{:url('exhibition')}" class="link bold">{:lang('h-exhibition')}</a>
+					<a href="{:url('contact')}" class="link bold">{:lang('h-contact')}</a>
+					<div class="icons">
+						<div class="icon wechat"></div>
+						<div class="icon facebook"></div>
+					</div>
+				</div>
+
+				<div class="qr-box">
+					<div class="qr-code"></div>
+					<div class="text">{:lang('f-follow_us')}</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	
+</body>
+</html>

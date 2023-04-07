@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>exhibition</title>
+
+</head>
+<body>
+    {foreach $exhibitionList as $exhibition}
+    <div style="display: flex">
+        <div>
+            <img src="{$exhibition.exhibition_pic[0]['url'] | default='' }" width="150px" height="150px">
+        </div>
+        <div>
+            <div>{$exhibition.exhibition_title}</div>
+            <div> 第一期：{$exhibition.exhibition_phaseone}</div>
+            <div> 第二期：{$exhibition.exhibition_phasetwo}</div>
+            <div> 摊位号：{$exhibition.exhibition_booth}</div>
+            <div>{$exhibition.created_time}</div>
+        </div>
+    </div>
+    {/foreach}
+</body>
+</html>

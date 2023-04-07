@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{:lang('h-home')}</title>
+    <link rel="stylesheet" href="/static/style/index.css"></link>
+    <link rel="stylesheet" href="/static/swiper.min.css">
+    <script crossorigin="anonymous" src="https://cdn.bootcdn.net/ajax/libs/axios/0.19.2/axios.js"></script>
+</head>
+<body>
+<div class="home base">
+    <div class="header">
+        <div class="container header-container">
+            <div class="logo"></div>
+            <ul class="header-nav">
+                <a href="{:url('website')}">
+                    <li class="current">{:lang('h-home')}</li>
+                </a>
+                <a href="{:url('website/about')}">
+                    <li>{:lang('h-about')}</li>
+                </a>
+                <a href="{:url('website/product')}">
+                    <li>{:lang('h-product')}</li>
+                </a>
+                <a href="{:url('website/exhibition')}">
+                    <li>{:lang('h-exhibition')}</li>
+                </a>
+                <a href="{:url('website/contact')}">
+                    <li>{:lang('h-contact')}</li>
+                </a>
+            </ul>
+        </div>
+    </div>
+    <div class="swiper-container" style="width: 100%" >
+        <div class="swiper-wrapper"  >
+            {voList name='urlList' id='url'}
+            <div class="swiper-slide" >
+                <div  style="width:100%;height: 500px;background-image: url('{$url['pic_url']}');background-size: cover;
+                    background-repeat: no-repeat;
+                    background-position: center;" >
+                    <div style="
+                            height: 500px;
+                            padding: 200px 0 0 20px;
+                            margin-left: 300px;">
+                        <div class="banner-text" style="color: white;
+                                font-size: 40px;
+                                font-weight: bold;">{:lang('banner-1.1')}</div>
+                        <div class="banner-text" style="color: white;
+                                font-size: 40px;
+                                font-weight: bold;">{:lang('banner-1.2')}</div>
+                        <div class="banner-subtext" style="color: white;
+                                font-size: 26px;
+                                font-weight: 300;">{:lang('banner-2')}</div>
+                        <a class="detail-btn" style="width: 110px;
+                                margin-top: 20px;
+                                background-color: #177c3e;
+                                color: white;
+                                padding: 5px 15px;
+                                text-align: center;" href="{:url('website/about')}">{:lang('detail-btn')}</a>
+                    </div>
+
+                </div>
+
+            </div>
+            {/voList}
+        </div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+        <!-- Add Pagination -->
+        <div class="swiper-pagination"></div>
+    </div>
+
+    <!-- Swiper JS -->
+    <script src="/static/swiper.min.js"></script>
+
+    <!-- Initialize Swiper -->
+    <script>
+
+        var swiper = new Swiper('.swiper-container', {
+            pagination: '.swiper-pagination',
+            paginationClickable: true,
+            prevButton:'.swiper-button-prev',
+            nextButton:'.swiper-button-next',
+            autoplay : 5000,
+        });
+    </script>
+
+<!--        <div class="banner">-->
+<!--    <div class="bannertext-container" >-->
+<!--            <div class="banner-text">{:lang('banner-1.1')}</div>-->
+<!--            <div class="banner-text">{:lang('banner-1.2')}</div>-->
+<!--            <div class="banner-subtext">{:lang('banner-2')}</div>-->
+<!--            <a class="detail-btn" href="{:url('website/about')}">{:lang('detail-btn')}</a>-->
+<!--    </div>-->
+<!--    </div>-->
+
+
+    <div class="info container">
+        <div class="underline-title">{:lang('about_us')}</div>
+        <div class="row">
+            <div class="info-box">
+                <div class="info-title">{:lang('f-company_name')}</div>
+                <div class="info-text">
+                    {foreach $dashboardArticle as $item}
+                    <p>
+                        {$item}
+                    </p >
+                    {/foreach}
+                </div>
+                <div class="info-detail-btn">{:lang('detail-btn')}</div>
+            </div>
+<!--            <div class="info-box">-->
+<!--                <div class="info-title">{:lang('f-company_name')}</div>-->
+<!--                {foreach $dashboardArticle as $item}-->
+<!--                <div class="info-text">-->
+<!--                    {$item}-->
+<!--                </div>-->
+<!--                {/foreach}-->
+
+
+<!--                <div class="info-text">……</div>-->
+<!--                <a class="info-detail-btn" href="{:url('website/about')}">{:lang('detail-btn')}</a>-->
+<!--                &lt;!&ndash;					<div class="info-detail-btn">查看详情</div>&ndash;&gt;-->
+<!--            </div>-->
+            <div class="info-img"></div>
+        </div>
+        <div class="number-box">
+            <div class="number-item">
+                <div class="row">
+                    <div class="num">20000</div>
+                    <div class="unit">㎡</div>
+                </div>
+                <div class="text">{:lang('total_area')}</div>
+            </div>
+            <div class="divide-line"></div>
+            <div class="number-item">
+                <div class="row">
+                    <div class="num">11000</div>
+                    <div class="unit">㎡</div>
+                </div>
+                <div class="text">{:lang('phase_one_construction')}</div>
+            </div>
+            <div class="divide-line"></div>
+            <div class="number-item">
+                <div class="row">
+                    <div class="num">10</div>
+                    <div class="unit">+</div>
+                </div>
+                <div class="text">{:lang('product_series')}</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="product-bg">
+        <div class="product-box container">
+            <div class="underline-title">{:lang('product_display')}</div>
+            <div class="table-box">
+                <div class="cate-list">
+<!--                    <div class="cate-item">{:lang('p-new')}</div>-->
+                    <!--						<div class="cate-item current">喷枪系列</div>-->
+                    {foreach $categoryList as $category}
+                    <div>
+<!--                     <a id="aaa" class="cate-item {$category['category_id'] == $categoryId ? 'current' : ''}" href="?categoryid={$category['category_id']}">{$category['category_name']}</a>-->
+                        <div id="aaa" id="aaa" class="cate-item {$category['category_id'] == $categoryId ? 'current' : ''}" onclick="change({$category['category_id']})">{$category['category_name']}</div>
+                    </div>
+                    {/foreach}
+                    <div class="cate-item">{:lang('p-other')}</div>
+                </div>
+
+                <div class="img-big">
+                    <img src="{$categorypic[0]['url'] | default=''}" style="width:268px;height: 268px"
+                         alt="产品图缺失">
+                </div>
+                <div class="imgs">
+                    <div class="img-small">
+                        <img src="{$categorypic[1]['url']| default=''}" style="width:178px;height: 178px"
+                             alt="产品图缺失">
+                    </div>
+                    <div class="img-small">
+                        <img src="{$categorypic[2]['url'] | default=''}" style="width:178px;height: 178px"
+                             alt="产品图缺失">
+                    </div>
+                    <div class="img-small">
+                        <img src="{$categorypic[3]['url']| default=''}" style="width:178px;height: 178px"
+                             alt="产品图缺失">
+                    </div>
+                    <div class="img-small">
+                        <img src="{$categorypic[4]['url']| default=''}" style="width:178px;height: 178px"
+                             alt="产品图缺失">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        let products = [];
+        let piclist = [];
+        let Obj = document.querySelectorAll('#aaa');
+        for (let i = 0; i < Obj.length; i++) {
+            Obj[i].addEventListener('mouseover', function () {
+                this.style.backgroundColor = 'green';
+                this.style.color = 'white';
+            })
+            Obj[i].addEventListener('mouseleave', function () {
+                this.style.backgroundColor = 'white';
+                this.style.color = 'black';
+            })
+        }
+
+        async function change(data) {
+            console.log(document.getElementById('aaa'))
+            const response = await  axios({
+                // 请求方法
+                method: 'get',
+                //url
+                url: '/index.php/common/getproductbypage',
+                //url参数
+                params: {
+                    pageNum: 1,
+                    pageSize: 5,
+                    categoryid: data,
+                },
+            })
+            // console.log(response.data);
+            //     products = response.data.data;
+            //
+            // for(let i = 0 ; i < 5 ;i++){
+            //     if(products[i] != null && products[i]['prd_pic']!=null){
+            //         document.getElementsByTagName('img')[i].src=products[i]['prd_pic'][0]['url']
+            //     }else{
+            //         document.getElementsByTagName('img')[i].src = ''
+            //     }
+            // }
+            piclist = response.data
+            console.log(piclist);
+            for(let i = 0 ;i<5 ; i++){
+                if(piclist !== null && piclist[i] != null && piclist[i]['url'] !== null){
+                    console.log(piclist[i]['url'])
+                    document.getElementsByTagName('img')[i].src=piclist[i]['url'];
+                }else{
+                    console.log('没设置')
+                    document.getElementsByTagName('img')[i].src = ''
+                }
+            }
+        }
+    </script>
+    <div class="exhibition-box container">
+        <div class="underline-title">{:lang('exhibition_news')}</div>
+        <div class="row">
+            <div class="img-box">
+
+                <div class="img-wrapper">
+                    <img src="{$exhibitionList[0]['exhibition_pic'][0]['url'] | default=''}" width="448px"
+                         height="269px" alt="exhibition">
+                </div>
+                <div class="row">
+                    <div class="date">
+                        <div class="day">{$day[0]}</div>
+                        <div class="year-month">{$exhibitionList[0]['created_time']}</div>
+                    </div>
+                    <div class="info">{$exhibitionList[0]['exhibition_title']}</div>
+                </div>
+            </div>
+            <div class="gap-box"></div>
+            <div class="info-box">
+                <div class="date">
+                    <div class="day">{$day[1]}</div>
+                    <div class="year-month">{$exhibitionList[1]['created_time']}</div>
+                </div>
+                <div class="info">{$exhibitionList[1]['exhibition_title']}</div>
+                <div class="detail">{:lang('exhibition_time')}：{$exhibitionList[1]['exhibition_phaseone']}</div>
+                <div class="detail">{:lang('booth_number')}：{$exhibitionList[1]['exhibition_boothone']}</div>
+                <div class="link">→</div>
+            </div>
+            <div class="info-box highlight">
+                <div class="date">
+                    <div class="day">{$day[2]}</div>
+                    <div class="year-month">{$exhibitionList[2]['created_time']}</div>
+                </div>
+                <div class="info">{$exhibitionList[2]['exhibition_title']}</div>
+                <div class="detail">{:lang('exhibition_time')}：{$exhibitionList[2]['exhibition_phaseone']}</div>
+                <div class="detail">{:lang('booth_number')}：{$exhibitionList[2]['exhibition_boothone']}</div>
+                <div class="link">→</div>
+            </div>
+            <div class="info-box">
+                <div class="date">
+                    <div class="day">{$day[3]}</div>
+                    <div class="year-month">{$exhibitionList[3]['created_time']}</div>
+                </div>
+                <div class="info">{$exhibitionList[3]['exhibition_title']}</div>
+                <div class="detail">{:lang('exhibition_time')}：{$exhibitionList[3]['exhibition_phaseone']}</div>
+                <div class="detail">{:lang('booth_number')}：{$exhibitionList[3]['exhibition_boothone']}</div>
+                <div class="link">→</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="banner-img">
+        <div class="banner-text-box container">
+            <div class="banner-text">{:lang('banner-3.1')}</div>
+            <div class="banner-text">{:lang('banner-3.2')}</div>
+        </div>
+    </div>
+
+    <div class="map-bg">
+        <div class="map-box container">
+            <div class="contact-list">
+                <div class="contact-item">
+                    <div class="icon">
+                        <img src="/static/images/icons/phone.png" alt="phone">
+                    </div>
+                    <div class="row">
+                        <div class="label">{:lang('phone')}：</div>
+                        <div class="content">0086-574-63287088</div>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="icon">
+                        <img src="/static/images/icons/fax.png" alt="fax">
+                    </div>
+                    <div class="row">
+                        <div class="label">{:lang('fax')}：</div>
+                        <div class="content">0086-574-63287765</div>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="icon">
+                        <img src="/static/images/icons/mail.png" alt="mail">
+                    </div>
+                    <div class="row">
+                        <div class="label">{:lang('mail')}：</div>
+                        <div class="content">gsgt@nblzy.com</div>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="icon">
+                        <img src="/static/images/icons/marker.png" alt="marker">
+                    </div>
+                    <div class="row">
+                        <div class="label">{:lang('address')}：</div>
+                        <div class="content">{:lang('addr')}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="map-wrapper" id="map">
+            </div>
+        </div>
+    </div>
+
+
+    <div class="footer">
+        <div class="container">
+            <div class="logo-box">
+                <div class="logo"></div>
+                <div class="name">{:lang('f-company_name')}</div>
+            </div>
+            <div class="link-box">
+                <a href="{:url('website')}" class="link bold mb30">{:lang('h-home')}</a>
+                <a href="{:url('about')}" class="link bold">{:lang('h-about')}</a>
+                <a href="{:url('about')}" class="link">{:lang('f-company_intro')}</a>
+                <a href="{:url('about')}" class="link">{:lang('f-company_culture')}</a>
+                <a href="{:url('about')}" class="link">{:lang('f-development_history')}</a>
+            </div>
+            <div class="link-box">
+                <a href="{:url('product')}" class="link bold">{:lang('h-product')}</a>
+                <a href="{:url('product')}" class="link">{:lang('p-new')}</a>
+                <a href="{:url('product')}" class="link">{$categoryList[0]['category_name'] | default=''}</a>
+                <a href="{:url('product')}" class="link">{$categoryList[1]['category_name'] | default=''}</a>
+                <a href="{:url('product')}" class="link">{$categoryList[2]['category_name'] | default=''}</a>
+                <a href="{:url('product')}" class="link">{$categoryList[3]['category_name'] | default=''}</a>
+            </div>
+            <div class="link-box">
+                <a href="{:url('product')}" class="link">{$categoryList[4]['category_name'] | default=''}</a>
+                <a href="{:url('product')}" class="link">{$categoryList[5]['category_name'] | default=''}</a>
+                <a href="{:url('product')}" class="link">{$categoryList[6]['category_name'] | default=''}</a>
+                <a href="{:url('product')}" class="link">{$categoryList[7]['category_name'] | default=''}</a>
+                <a href="{:url('product')}" class="link">{$categoryList[8]['category_name'] | default=''}</a>
+                <a href="{:url('product')}" class="link">{:lang('p-other')}</a>
+            </div>
+            <div class="link-box">
+                <a href="{:url('exhibition')}" class="link bold">{:lang('h-exhibition')}</a>
+                <a href="{:url('contact')}" class="link bold">{:lang('h-contact')}</a>
+                <div class="icons">
+                    <div class="icon wechat"></div>
+                    <div class="icon facebook"></div>
+                </div>
+            </div>
+
+            <div class="qr-box">
+                <div class="qr-code"></div>
+                <div class="text">{:lang('f-follow_us')}</div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="https://webapi.amap.com/loader.js"></script>
+<script type="text/javascript">
+    AMapLoader.load({
+        "key": "f4a641dc246e0bb5762af876525d3b93",              // 申请好的Web端开发者Key，首次调用 load 时必填
+        // "version": "2.0",   // 指定要加载的 JSAPI 的版本，缺省时默认为 1.4.15, 1.4.15才有英文显示
+        "plugins": [],           // 需要使用的的插件列表，如比例尺'AMap.Scale'等
+        "AMapUI": {             // 是否加载 AMapUI，缺省不加载
+            "version": '1.1',   // AMapUI 版本
+            "plugins": ['overlay/SimpleMarker'],       // 需要加载的 AMapUI ui插件
+        },
+    }).then((AMap) => {
+        var map = new AMap.Map('map', {
+            center: [121.235724, 30.219665],
+            zoom: 17,
+            lang: 'zh_en',
+        });
+        window.mmm = map
+        console.log(map)
+        // map.addControl(new AMap.Scale());
+        let marker = new AMap.Marker({
+            position: new AMap.LngLat(121.235724, 30.219665),
+            title: "{:lang('f-company_name')}",
+        });
+        map.add(marker);
+        // map.on('click', (ev)=> {
+        // 	console.log('target:', ev.target);
+        // 	console.log('您在[ '+ev.lnglat.getLng()+','+ev.lnglat.getLat()+' ]的位置点击了地图！')
+        // });
+    }).catch((e) => {
+        console.error(e);  //加载错误提示
+    });
+</script>
+<!-- Swiper JS -->
+<script src="/static/swiper/swiper-bundle.min.js"></script>
+<script>
+
+</script>
+</body>
+</html>

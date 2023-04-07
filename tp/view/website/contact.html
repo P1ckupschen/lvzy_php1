@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>{:lang('h-contact')}</title>
+	<link rel="stylesheet" href="/static/style/index.css"></link>
+</head>
+<body>
+	<div class="contact base">
+		<div class="header">
+			<div class="container header-container">
+				<div class="logo"></div>
+				<ul class="header-nav">
+					<a href="{:url('website')}">
+						<li>{:lang('h-home')}</li>
+					</a>
+					<a href="{:url('website/about')}">
+						<li>{:lang('h-about')}</li>
+					</a>
+					<a href="{:url('website/product')}">
+						<li>{:lang('h-product')}</li>
+					</a>
+					<a href="{:url('website/exhibition')}">
+						<li>{:lang('h-exhibition')}</li>
+					</a>
+					<a href="{:url('website/contact')}">
+						<li class="current">{:lang('h-contact')}</li>
+					</a>
+				</ul>
+			</div>
+		</div>
+
+		<div class="banner">
+			<div class="underline-title" style="color: #fff;">{:lang('contact_us')}</div>
+		</div>
+
+		<div class="container-bg">
+			<div class="contact-box container">
+				<div class="logo"></div>
+				<div class="row">
+					<div class="item">
+						<div class="icon">
+							<img src="/static/images/icons/phonegreen.png" alt="phone">
+						</div>
+						<div class="label">{:lang('phone')}：</div>
+						<div class="content">0086-574-63287088</div>
+					</div>
+					<div class="item">
+						<div class="icon">
+							<img src="/static/images/icons/faxgreen.png" alt="fax">
+						</div>
+						<div class="label">{:lang('fax')}：</div>
+						<div class="content">0086-574-63287765</div>
+					</div>
+					<div class="item">
+						<div class="icon">
+							<img src="/static/images/icons/mailgreen.png" alt="mail">
+						</div>
+						<div class="label">{:lang('mail')}</div>
+						<div class="content">gsgt@nblzy.com</div>
+					</div>
+				</div>
+				<div class="form">
+					<form class="form"  action="/index.php/mail/message/insertmessage" method="post">
+						<div class="name item">
+							<input type="text" id="name" name="message_name"  required="required" placeholder="{:lang('ph_name')}">
+						</div>
+						<div class="mail item">
+							<input type="text" id="email" name="message_email"  required="required" placeholder="{:lang('ph_mail')}">
+						</div>
+						<div class="content item">
+							<input type="text" name="message_description">
+						</div>
+						<button class="submit-btn" type="submit">{:lang('submit_btn')}</button>
+					</form>
+				</div>
+			</div>
+		</div>
+
+		<div class="map" id="map"></div>
+	
+		<div class="footer">
+			<div class="container">
+				<div class="logo-box">
+					<div class="logo"></div>
+					<div class="name">{:lang('f-company_name')}</div>
+				</div>
+				<div class="link-box">
+					<a href="{:url('website')}" class="link bold mb30">{:lang('h-home')}</a>
+					<a href="{:url('about')}" class="link bold">{:lang('h-about')}</a>
+					<a href="{:url('about')}" class="link">{:lang('f-company_intro')}</a>
+					<a href="{:url('about')}" class="link">{:lang('f-company_culture')}</a>
+					<a href="{:url('about')}" class="link">{:lang('f-development_history')}</a>
+				</div>
+				<div class="link-box">
+					<a href="{:url('product')}" class="link bold">{:lang('h-product')}</a>
+					<a href="{:url('product')}" class="link">{:lang('p-new')}</a>
+					<a href="{:url('product')}" class="link">{$categoryList[0]['category_name'] | default=''}</a>
+					<a href="{:url('product')}" class="link">{$categoryList[1]['category_name'] | default=''}</a>
+					<a href="{:url('product')}" class="link">{$categoryList[2]['category_name'] | default=''}</a>
+					<a href="{:url('product')}" class="link">{$categoryList[3]['category_name'] | default=''}</a>
+				</div>
+				<div class="link-box">
+					<a href="{:url('product')}" class="link">{$categoryList[4]['category_name'] | default=''}</a>
+					<a href="{:url('product')}" class="link">{$categoryList[5]['category_name'] | default=''}</a>
+					<a href="{:url('product')}" class="link">{$categoryList[6]['category_name'] | default=''}</a>
+					<a href="{:url('product')}" class="link">{$categoryList[7]['category_name'] | default=''}</a>
+					<a href="{:url('product')}" class="link">{$categoryList[8]['category_name'] | default=''}</a>
+					<a href="{:url('product')}" class="link">{:lang('p-other')}</a>
+				</div>
+				<div class="link-box">
+					<a href="{:url('exhibition')}" class="link bold">{:lang('h-exhibition')}</a>
+					<a href="{:url('contact')}" class="link bold">{:lang('h-contact')}</a>
+					<div class="icons">
+						<div class="icon wechat"></div>
+						<div class="icon facebook"></div>
+					</div>
+				</div>
+	
+				<div class="qr-box">
+					<div class="qr-code"></div>
+					<div class="text">{:lang('f-follow_us')}</div>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+	<script src="https://webapi.amap.com/loader.js"></script>
+	<script type="text/javascript" >
+		AMapLoader.load({
+			"key": "f4a641dc246e0bb5762af876525d3b93",              // 申请好的Web端开发者Key，首次调用 load 时必填
+			// "version": "2.0",   // 指定要加载的 JSAPI 的版本，缺省时默认为 1.4.15, 1.4.15才有英文显示
+			"plugins": [],           // 需要使用的的插件列表，如比例尺'AMap.Scale'等
+			"AMapUI": {             // 是否加载 AMapUI，缺省不加载
+				"version": '1.1',   // AMapUI 版本
+				"plugins":['overlay/SimpleMarker'],       // 需要加载的 AMapUI ui插件
+			},
+		}).then((AMap)=>{
+			var map = new AMap.Map('map', {
+				center: [121.224974,30.224875],
+				zoom: 15,
+				lang: 'zh_en',
+			});
+			window.mmm = map
+			console.log(map)
+			// map.addControl(new AMap.Scale());
+			let marker = new AMap.Marker({
+				position: new AMap.LngLat(121.235724,30.219665),
+				title: "{:lang('f-company_name')}",
+			});
+			map.add(marker);
+			map.on('click', (ev)=> {
+				console.log('target:', ev.target);
+				console.log('您在[ '+ev.lnglat.getLng()+','+ev.lnglat.getLat()+' ]的位置点击了地图！')
+			});
+
+			//在指定位置打开信息窗体
+			function openInfo() {
+				//构建信息窗体中显示的内容
+				var info = [];
+				info.push("<div class='input-card content-window-card'><div><img style=\"width: 100%;\" src=\" /static/images/contact/map_marker.png \"/></div> ");
+				info.push("<div style=\"padding:7px 0px 0px 0px;\"><h4>{:lang('f-company_name')}</h4>");
+				// info.push("<p class='input-item'>电话 : 010-84107000   邮编 : 100102</p>");
+				info.push("<p class='input-item'>{:lang('address')} :{:lang('addr')}</p></div></div>");
+
+				infoWindow = new AMap.InfoWindow({
+					content: info.join("")  //使用默认信息窗体框样式，显示信息内容
+				});
+
+				infoWindow.open(map, [121.235724,30.220700]);
+			}
+			openInfo();
+			marker.on('click',openInfo);
+		}).catch((e)=>{
+			console.error(e);  //加载错误提示
+		});
+	</script>
+	
+</body>
+</html>

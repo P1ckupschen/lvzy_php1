@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>{:lang('h-product')}</title>
+	<link rel="stylesheet" href="/static/style/index.css"></link>
+
+	<!-- layui.css -->
+	<link rel="stylesheet" href="/static/layui/css/layui.css">
+</head>
+<body>
+	<div class="product base">
+		<div class="header">
+			<div class="container header-container">
+				<div class="logo"></div>
+				<ul class="header-nav">
+					<a href="{:url('website')}">
+						<li>{:lang('h-home')}</li>
+					</a>
+					<a href="{:url('website/about')}">
+						<li>{:lang('h-about')}</li>
+					</a>
+					<a href="{:url('website/product')}">
+						<li class="current">{:lang('h-product')}</li>
+					</a>
+					<a href="{:url('website/exhibition')}">
+						<li>{:lang('h-exhibition')}</li>
+					</a>
+					<a href="{:url('website/contact')}">
+						<li>{:lang('h-contact')}</li>
+					</a>
+				</ul>
+			</div>
+		</div>
+
+		<div class="banner">
+			<div class="bannertext-container">
+				<div class="banner-text">{:lang('banner-4.1')}</div>
+				<div class="banner-subtext">{:lang('banner-4.2')}</div>
+			</div>
+		</div>
+
+		<div class="product-box container">
+			<div class="underline-title">{:lang('product_series')}</div>
+			<div class="series-list">
+				{foreach $categoryList as $category}
+				<a id="{$category['category_id']}"  href="?categoryid={$category['category_id']}" class="series-item">{$category['category_name']}</a>
+				{/foreach}
+			</div>
+			<div class="product-list">
+				{foreach $prdList as $product}
+				<div class="product-item">
+					<div class="img-wrapper">
+						<img src="{$product['prd_pic'][0]['url'] | default='' }" alt="productimg" style="width: 250px;height: 250px">
+					</div>
+					<div class="product-name">{$product.prd_modelname}</div>
+					<a href="{:url('website/product_detail')}?prdid={$product['prd_id']}" class="detail-btn">{:lang('detail-btn')}</a>
+				</div>
+				{/foreach}
+
+			</div>
+			<div class="pagination">
+				<div id="page"></div>
+			</div>
+		</div>
+		<script>
+			var urlParams = window.location.toString();
+			// console.log(urlParams.split('=')[1]);
+			var id = urlParams.split('=')[1];
+			// console.log(document.getElementById(id)) ;
+			document.getElementById(id).setAttribute('class','series-item current')
+		</script>
+		<div class="footer">
+			<div class="container">
+				<div class="logo-box">
+					<div class="logo"></div>
+					<div class="name">{:lang('f-company_name')}</div>
+				</div>
+				<div class="link-box">
+					<a href="{:url('website')}" class="link bold mb30">{:lang('h-home')}</a>
+					<a href="{:url('about')}" class="link bold">{:lang('h-about')}</a>
+					<a href="{:url('about')}" class="link">{:lang('f-company_intro')}</a>
+					<a href="{:url('about')}" class="link">{:lang('f-company_culture')}</a>
+					<a href="{:url('about')}" class="link">{:lang('f-development_history')}</a>
+				</div>
+				<div class="link-box">
+					<a href="{:url('product')}" class="link bold">{:lang('h-product')}</a>
+					<a href="{:url('product')}" class="link">{:lang('p-new')}</a>
+					<a href="{:url('product')}" class="link">{$categoryList[0]['category_name'] | default=''}</a>
+					<a href="{:url('product')}" class="link">{$categoryList[1]['category_name'] | default=''}</a>
+					<a href="{:url('product')}" class="link">{$categoryList[2]['category_name'] | default=''}</a>
+					<a href="{:url('product')}" class="link">{$categoryList[3]['category_name'] | default=''}</a>
+				</div>
+				<div class="link-box">
+					<a href="{:url('product')}" class="link">{$categoryList[4]['category_name'] | default=''}</a>
+					<a href="{:url('product')}" class="link">{$categoryList[5]['category_name'] | default=''}</a>
+					<a href="{:url('product')}" class="link">{$categoryList[6]['category_name'] | default=''}</a>
+					<a href="{:url('product')}" class="link">{$categoryList[7]['category_name'] | default=''}</a>
+					<a href="{:url('product')}" class="link">{$categoryList[8]['category_name'] | default=''}</a>
+					<a href="{:url('product')}" class="link">{:lang('p-other')}</a>
+				</div>
+				<div class="link-box">
+					<a href="{:url('exhibition')}" class="link bold">{:lang('h-exhibition')}</a>
+					<a href="{:url('contact')}" class="link bold">{:lang('h-contact')}</a>
+					<div class="icons">
+						<div class="icon wechat"></div>
+						<div class="icon facebook"></div>
+					</div>
+				</div>
+
+				<div class="qr-box">
+					<div class="qr-code"></div>
+					<div class="text">{:lang('f-follow_us')}</div>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+	
+
+	<!-- layui js -->
+	<script src="/static/layui/layui.js"></script>
+	<script>
+		function getUrlParams(url) {
+			let urlStr = url.split('?')[1];
+			// 创建空对象存储参数
+			let obj = {};
+				// 再通过 & 将每一个参数单独分割出来
+			if(urlStr!=null){
+				// console.log("进来了")
+				let paramsArr = urlStr.split('&');
+				console.log(paramsArr);
+				for(let i = 0,len = paramsArr.length;i < len;i++) {
+					// 再通过 = 将每一个参数分割为 key:value 的形式
+					let arr = paramsArr[i].split('=');
+					obj[arr[0]] = arr[1];
+				}
+				return obj;
+			}else {
+				obj['pagenum']=1;
+				return obj;
+			}
+		}
+		layui.use('laypage', () => {
+			var laypage = layui.laypage;
+			var url = window.location.toString();
+			var params = getUrlParams(url);
+			//执行一个laypage实例
+			laypage.render({
+				elem: 'page', //注意，这里的 page 是 ID，不用加 # 号
+				// count: '<?php echo $total ?>' ,//数据总数，从服务端得到
+				count: '{$total}' ,//数据总数，从服务端得到
+				theme: '#177c3e', //自定义样式
+				limit:12,
+				curr:params.pagenum,
+				first: "{:lang('page_first')}", //显示首页
+				last: "{:lang('page_last')}", //显示尾页
+				prev: "{:lang('page_prev')}",
+				next: "{:lang('page_next')}",
+				jump: (obj, first) => {
+					//obj包含了当前分页的所有参数，比如：
+					console.log(obj.curr); //得到当前页，以便向服务端请求对应页的数据。
+					console.log(obj.limit); //得到每页显示的条数
+					console.log(params);
+					//首次不执行
+					if(!first){
+																	//路径携带categoryid TODO ?????
+						var url = window.location.toString();
+						console.log(url.indexOf('pagenum'));
+						if (url.indexOf('pagenum')!= null && url.indexOf('categoryid')!=-1){
+							//里面已经有pagenum了 进行替换
+							console.log('进来了')
+							var param = url.split('&')[1];
+							param =`&pagenum=${obj.curr}`;
+							window.location.href=url.split('&')[0]+param;
+						} else {
+							window.location.href=url+`?categoryid=1&pagenum=${obj.curr}`;
+						}
+					}
+				}
+			});
+		});
+	</script>
+</body>
+</html>
