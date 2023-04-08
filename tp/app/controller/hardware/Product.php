@@ -52,6 +52,7 @@ class Product extends BaseController
      */
     public function insertProductWithPic(){
         $product = $this->request->post('productinfo');
+//        exit();
         //把对象中的prd_pic属性里的值都变为json再存放
         if(count($product['prd_pic'])==0){
             $product['prd_pic']=null;

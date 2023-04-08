@@ -133,10 +133,11 @@
 			//执行一个laypage实例
 			laypage.render({
 				elem: 'page', //注意，这里的 page 是 ID，不用加 # 号
-				count: '<?php echo $total ?>', //数据总数，从服务端得到
+				// count: '<?php echo $total ?>', //数据总数，从服务端得到
+				count: '{$total}',
 				theme: '#177c3e', //自定义样式
-				limit:3,
-				curr:params.pagenum,
+				limit: 3,
+				curr: params.pagenum,
 				first: "{:lang('page_first')}", //显示首页
 				last: "{:lang('page_last')}", //显示尾页
 				prev: "{:lang('page_prev')}",

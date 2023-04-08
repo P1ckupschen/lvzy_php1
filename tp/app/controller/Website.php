@@ -206,8 +206,13 @@ class Website extends BaseController
 
         $pageNum = $this->request->get('pagenum',1);
         $pageSize = $this->request->get('pagesize',12);
-        $prdList = Db::table('sys_product')->where('category_id',$categoryId)->json(['prd_pic'])->field('prd_id,prd_modelname,prd_pic')->paginate(['list_rows'=> $pageSize, 'page' =>$pageNum ]);
-        //产品不为空
+        if(Lang::getLangSet() == 'en-us' ){
+            $prdList = Db::table('sys_product')->where('category_id',$categoryId)->where('prd_display','in','2,3')->json(['prd_pic'])->field('prd_id,prd_modelname,prd_pic')->paginate(['list_rows'=> $pageSize, 'page' =>$pageNum ]);
+        }else{
+            $prdList = Db::table('sys_product')->where('category_id',$categoryId)->where('prd_display','in','1,3')->json(['prd_pic'])->field('prd_id,prd_modelname,prd_pic')->paginate(['list_rows'=> $pageSize, 'page' =>$pageNum ]);
+        }
+//        $prdList = Db::table('sys_product')->where('category_id',$categoryId)->json(['prd_pic'])->field('prd_id,prd_modelname,prd_pic')->paginate(['list_rows'=> $pageSize, 'page' =>$pageNum ]);
+//        //产品不为空
         if ($prdList!=null) {
             foreach ($prdList as $key=>$item) {
                 if($item['prd_pic']!==null) {
@@ -219,6 +224,7 @@ class Website extends BaseController
                 $prdList[$key] = $item;
             }
         }
+
         View::assign('prdList',$prdList);
         View::assign('total',$prdList->total());
         //跳转后的产品页面 根据点击的产品id需要 （型号 描述 包装 外箱只数 尺寸 产品效果图 产品图）

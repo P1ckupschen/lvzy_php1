@@ -56,7 +56,7 @@
 						<img src="{$product['prd_pic'][0]['url'] | default='' }" alt="productimg" style="width: 250px;height: 250px">
 					</div>
 					<div class="product-name">{$product.prd_modelname}</div>
-					<a href="{:url('website/product_detail')}?prdid={$product['prd_id']}" class="detail-btn">{:lang('detail-btn')}</a>
+					<a href="{:url('website/product_detail')}?prdid={$product['prd_id']}" class="detail-btn">{:lang('detail-btn')} 》</a>
 				</div>
 				{/foreach}
 
@@ -157,6 +157,8 @@
 				curr:params.pagenum,
 				first: "{:lang('page_first')}", //显示首页
 				last: "{:lang('page_last')}", //显示尾页
+				// // first:"首页",
+				// // last:"尾页",
 				prev: "{:lang('page_prev')}",
 				next: "{:lang('page_next')}",
 				jump: (obj, first) => {
