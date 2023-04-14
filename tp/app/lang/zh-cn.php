@@ -63,10 +63,12 @@ return [
 	'contact_us' => '联系我们',
 	'ph_name' => '姓名*',
 	'ph_mail' => '电子邮箱*',
+	'ph_content' => '内容*',
 	'submit_btn' => '提交',
+    'booth_number' =>'摊位号',
+    'exhibition_time'=>'参展时间',
+    'ph_content' => '内容',
     'first_phase'=>'第一期',
     'second_phase'=>'第二期',
-    'booth_number'=>'摊位号码',
-    'exhibition_time'=>'参展时间',
-    'addr'=>'中国浙江慈溪市坎墩工业园区',
+    'addr'=>'中国浙江慈溪市坎墩工业园区'
 ];

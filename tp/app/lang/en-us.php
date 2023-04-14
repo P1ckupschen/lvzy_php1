@@ -63,10 +63,12 @@ return [
 	'contact_us' => 'Contact Us',
 	'ph_name' => 'name*',
 	'ph_mail' => 'email*',
+	'ph_content' => 'content*',
 	'submit_btn' => 'Submit',
-    'first_phase' =>'firstphase',
-    'second_phase'=>'secondphase',
-    'booth_number'=>'Booth Number',
-    'exhibition_time'=>'Exhibition time',
-    'addr'=>'Kandun Industrial Zone, Cixi, Zhejiang, China'
+    'exhibition_time'=>'Exhibition Time',
+    'booth_number'=> 'Booth Number',
+    'ph_content' => 'content',
+    'first_phase'=>'First Phase',
+    'second_phase'=>'Second Phase',
+    'addr' => 'Kandun Industrial Zone, Cixi City, Zhejiang Province, China'
 ];

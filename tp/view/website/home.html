@@ -83,6 +83,7 @@
             paginationClickable: true,
             prevButton:'.swiper-button-prev',
             nextButton:'.swiper-button-next',
+            loop: true,
             autoplay : 5000,
         });
     </script>
@@ -104,7 +105,7 @@
                 <div class="info-title">{:lang('f-company_name')}</div>
                 <div class="info-text">
                     {foreach $dashboardArticle as $item}
-                    <p>
+                    <p style="text-indent: 2em">
                         {$item}
                     </p >
                     {/foreach}
@@ -166,29 +167,30 @@
                         <div id="aaa" id="aaa" class="cate-item {$category['category_id'] == $categoryId ? 'current' : ''}" onclick="change({$category['category_id']})">{$category['category_name']}</div>
                     </div>
                     {/foreach}
-                    <div class="cate-item">{:lang('p-other')}</div>
+<!--                    <div class="class="cate-item">{:lang('p-other')}</div>-->
+                    <a class="cate-item" href="{:url('website/product')}">{:lang('p-other')}</a>
                 </div>
 
                 <div class="img-big">
                     <img src="{$categorypic[0]['url'] | default=''}" style="width:268px;height: 268px"
-                         alt="产品图缺失">
+                         alt="">
                 </div>
                 <div class="imgs">
                     <div class="img-small">
                         <img src="{$categorypic[1]['url']| default=''}" style="width:178px;height: 178px"
-                             alt="产品图缺失">
+                             alt="">
                     </div>
                     <div class="img-small">
                         <img src="{$categorypic[2]['url'] | default=''}" style="width:178px;height: 178px"
-                             alt="产品图缺失">
+                             alt="">
                     </div>
                     <div class="img-small">
                         <img src="{$categorypic[3]['url']| default=''}" style="width:178px;height: 178px"
-                             alt="产品图缺失">
+                             alt="">
                     </div>
                     <div class="img-small">
                         <img src="{$categorypic[4]['url']| default=''}" style="width:178px;height: 178px"
-                             alt="产品图缺失">
+                             alt="">
                     </div>
                 </div>
             </div>
@@ -210,7 +212,7 @@
         }
 
         async function change(data) {
-            console.log(document.getElementById('aaa'))
+            // console.log(document.getElementById('aaa'))
             const response = await  axios({
                 // 请求方法
                 method: 'get',
@@ -235,13 +237,13 @@
             //     }
             // }
             piclist = response.data
-            console.log(piclist);
+            // console.log(piclist);
             for(let i = 0 ;i<5 ; i++){
                 if(piclist !== null && piclist[i] != null && piclist[i]['url'] !== null){
-                    console.log(piclist[i]['url'])
+                    // console.log(piclist[i]['url'])
                     document.getElementsByTagName('img')[i].src=piclist[i]['url'];
                 }else{
-                    console.log('没设置')
+                    // console.log('没设置')
                     document.getElementsByTagName('img')[i].src = ''
                 }
             }
@@ -360,13 +362,13 @@
             <div class="link-box">
                 <a href="{:url('website')}" class="link bold mb30">{:lang('h-home')}</a>
                 <a href="{:url('about')}" class="link bold">{:lang('h-about')}</a>
-                <a href="{:url('about')}" class="link">{:lang('f-company_intro')}</a>
-                <a href="{:url('about')}" class="link">{:lang('f-company_culture')}</a>
-                <a href="{:url('about')}" class="link">{:lang('f-development_history')}</a>
+<!--                <a href="{:url('about')}" class="link">{:lang('f-company_intro')}</a>-->
+<!--                <a href="{:url('about')}" class="link">{:lang('f-company_culture')}</a>-->
+<!--                <a href="{:url('about')}" class="link">{:lang('f-development_history')}</a>-->
             </div>
             <div class="link-box">
                 <a href="{:url('product')}" class="link bold">{:lang('h-product')}</a>
-                <a href="{:url('product')}" class="link">{:lang('p-new')}</a>
+<!--                <a href="{:url('product')}" class="link">{:lang('p-new')}</a>-->
                 <a href="{:url('product')}" class="link">{$categoryList[0]['category_name'] | default=''}</a>
                 <a href="{:url('product')}" class="link">{$categoryList[1]['category_name'] | default=''}</a>
                 <a href="{:url('product')}" class="link">{$categoryList[2]['category_name'] | default=''}</a>
@@ -414,7 +416,7 @@
             lang: 'zh_en',
         });
         window.mmm = map
-        console.log(map)
+        // console.log(map)
         // map.addControl(new AMap.Scale());
         let marker = new AMap.Marker({
             position: new AMap.LngLat(121.235724, 30.219665),

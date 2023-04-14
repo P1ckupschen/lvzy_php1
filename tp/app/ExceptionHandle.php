@@ -1,6 +1,7 @@
 <?php
 namespace app;
 
+use app\common\exception\MyException;
 use think\db\exception\DataNotFoundException;
 use think\db\exception\ModelNotFoundException;
 use think\exception\Handle;
@@ -25,6 +26,7 @@ class ExceptionHandle extends Handle
         ModelNotFoundException::class,
         DataNotFoundException::class,
         ValidateException::class,
+        MyException::class
     ];
 
     /**

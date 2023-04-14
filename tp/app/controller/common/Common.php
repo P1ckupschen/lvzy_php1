@@ -1,8 +1,10 @@
 <?php
 
 namespace app\controller\common;
-
+require_once('app/result/Result.php');
 use app\BaseController;
+use app\result\Result\Result;
+use think\Exception;
 use think\facade\Db;
 use think\facade\Filesystem;
 use think\Request;
@@ -15,10 +17,14 @@ class Common extends BaseController
     public function uploadpic()
     {
         $uploadedFile = $this->request->file();
-        dd();
-        $savename = \think\facade\Filesystem::disk('public')->putFile('upload', $uploadedFile['file']);
+        try {
+            $savename = \think\facade\Filesystem::disk('public')->putFile('upload', $uploadedFile['file']);
 //        $savename = Filesystem::disk()->putFile( '/storage/upload',$uploadedFile['file']);
-        $result = '/public/storage/' . $savename;
+            $result = '/public/storage/' . $savename;
+        }catch (Exception $e){
+            return Result::Error('10002','图片上传失败请重试');
+        }
+//       return Result::Success($result);
         //返回地址 前端拼接
         return json($result);
     }
@@ -61,7 +67,18 @@ class Common extends BaseController
         return json($info['category_pic']);
 
     }
-
+    public function getProductListInMobile(){
+//        dump('sdsd');
+        $id = $this->request->get('categoryid');
+        $List = Db::table('sys_product')->json(['prd_pic'])->where('prd_istopping', 1)->where('category_id', $id)->field('prd_id,prd_pic')->limit(6)->select();
+        foreach ($List as $key=>$item) {
+            if ($item['prd_pic'] !== null) {
+                $item['prd_pic'] = config('app.app_host') . str_replace("//", "/", str_replace("\\", "/", $item['prd_pic'][0]['url']));
+            }
+            $List[$key] = $item;
+        }
+        return json($List);
+    }
 
 
 }

@@ -1,13 +1,140 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+	<title>{:lang('h-about')}</title>
+	<link rel="stylesheet" href="/static/style/mobile/mobile.css"></link>
+	<link rel="stylesheet" href="/static/style/mobile/about.css"></link>
 </head>
 <body>
-{jdfjdf}
-<!--<form action="">-->
-<!--    <input type="submit" name="提交">-->
-</form>
+	<div class="about base">
+		<div class="navbar">
+			<div class="logo"></div>
+			<div class="dropdown">
+				<input type="checkbox" name="btn" id="m-btn">
+				<label class="menu-btn" for="m-btn"></label>
+				<div class="dropdown-content">
+					<a href="{:url('website')}"><img src="/static/mobile/icons/navbar/home.svg" alt="home">{:lang('h-home')}</a>
+					<a href="{:url('website/about')}"><img src="/static/mobile/icons/navbar/about.svg" alt="about">{:lang('h-about')}</a>
+					<a href="{:url('website/product')}"><img src="/static/mobile/icons/navbar/product.svg" alt="product">{:lang('h-product')}</a>
+					<a href="{:url('website/exhibition')}"><img src="/static/mobile/icons/navbar/exhibition.svg" alt="exhibition">{:lang('h-exhibition')}</a>
+					<a href="{:url('website/contact')}"><img src="/static/mobile/icons/navbar/contact.svg" alt="contact">{:lang('h-contact')}</a>
+				</div>
+			</div>
+		</div>
+
+		<div class="banner">
+			<img src="/static/mobile/images/about/banner.png" alt="banner">
+		</div>
+
+		<div class="info-box base-padding">
+			<div class="logo"></div>
+			<div class="underline-title">{:lang('f-company_name')}</div>
+			<div class="info-text">
+				{foreach $aboutArticle as $item}
+				<p style="text-indent: 2em">
+					{$item}
+				</p>
+				{/foreach}
+
+			</div>
+
+			<div class="number-box">
+				<div class="number-item">
+					<div class="row">
+						<div class="num">20000</div>
+						<div class="unit">㎡</div>
+					</div>
+					<div class="text">{:lang('total_area')}</div>
+				</div>
+				<div class="number-item">
+					<div class="row">
+						<div class="num">11000</div>
+						<div class="unit">㎡</div>
+					</div>
+					<div class="text">{:lang('phase_one_construction')}</div>
+				</div>
+				<div class="number-item">
+					<div class="row">
+						<div class="num">10</div>
+						<div class="unit">+</div>
+					</div>
+					<div class="text">{:lang('product_series')}</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="banner2 base-padding">
+			<div class="list">
+				<div class="label-item">
+					<div class="container">
+						<div class="logo">
+							<img src="/static/mobile/images/about/icon1.png" alt="icon1">
+						</div>
+						<div class="label">{:lang('core_value')}</div>
+						<div class="content">{:lang('core_value_detail')}</div>
+					</div>
+				</div>
+				<div class="label-item">
+					<div class="container">
+						<div class="logo">
+							<img src="/static/mobile/images/about/icon2.png" alt="icon2">
+						</div>
+						<div class="label">{:lang('core_concept')}</div>
+						<div class="content">{:lang('core_concept_detail')}</div>
+					</div>
+				</div>
+				<div class="label-item">
+					<div class="container">
+						<div class="logo">
+							<img src="/static/mobile/images/about/icon3.png" alt="icon3">
+						</div>
+						<div class="label">{:lang('entrepreneurial_spirit')}</div>
+						<div class="content">{:lang('entrepreneurial_spirit_detail')}</div>
+					</div>
+				</div>
+				<div class="label-item">
+					<div class="container">
+						<div class="logo">
+							<img src="/static/mobile/images/about/icon4.png" alt="icon4">
+						</div>
+						<div class="label">{:lang('strategic_goal')}</div>
+						<div class="content">{:lang('strategic_goal_detail')}</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="workshop base-padding">
+			<div class="underline-title">{:lang('workshop_equipment')}</div>
+			<div class="img-container">
+<!--				<div class="img-wrapper small">-->
+<!--					<img src="/static/mobile/images/about/eq1.png" alt="eq1">-->
+<!--				</div>-->
+<!--				<div class="img-wrapper small">-->
+<!--					<img src="/static/mobile/images/about/eq2.png" alt="eq2">-->
+<!--				</div>-->
+<!--				<div class="img-wrapper big">-->
+<!--					<img src="/static/mobile/images/about/eq3.png" alt="eq3">-->
+<!--				</div>-->
+				<div class="img-wrapper small">
+					<img src="{$equipmentPicList[0]['url'] |default = '' }" onerror="this.src='/static/images/about/workshop1.png'" style="width: 174px;height: 110px" alt="workshopimg1">
+				</div>
+				<div class="img-wrapper small">
+					<img src="{$equipmentPicList[1]['url']|default = '' }" onerror="this.src='/static/images/about/workshop2.png'" style="width: 174px;height: 110px" alt="workshopimg1">
+				</div>
+				<div class="img-wrapper big">
+						<img src="{$equipmentPicList[2]['url']|default = '' }" onerror="this.src='/static/images/about/workshop3.png'" style="width: 368px;height: 220px" alt="workshopimg1">
+				</div>
+			</div>
+		</div>
+		
+		<div class="footer">
+			<div class="logo"></div>
+			<div class="name">{:lang('f-company_name')}</div>
+		</div>
+	</div>
 </body>
 </html>

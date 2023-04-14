@@ -1,6 +1,5 @@
 <?php
 namespace app\controller;
-
 use app\BaseController;
 use app\controller\common\test;
 use common\helps\utils;
@@ -42,6 +41,17 @@ class Website extends BaseController
             View::assign('dashboardArticle',$dashboardArticle['article_content']);
         }
 
+        //手机版类型数据
+        $categoryListmobile = Db::table('sys_category')->limit(10)->select();
+        if( Lang::getLangSet() == 'en-us'&& $categoryListmobile !==null){
+            foreach ($categoryListmobile as $key=>$category){
+                $category['category_name']=$category['category_engname'];
+                $categoryListmobile[$key] = $category;
+            }
+            View::assign('categoryListmobile',$categoryListmobile);
+        }else{
+            View::assign('categoryListmobile',$categoryListmobile);
+        }
         $categoryList = Db::table('sys_category')->where('category_istopping',1)->limit(10)->select();
         if( Lang::getLangSet() == 'en-us'&& $categoryList !==null){
             foreach ($categoryList as $key=>$category){
@@ -53,12 +63,26 @@ class Website extends BaseController
             View::assign('categoryList',$categoryList);
         }
 
+
+
         //当前类型号的对应产品
         $categoryId = $this->request->get('categoryid');
         if($categoryId ==null){
             $categoryId=$categoryList[0]['category_id'];
         }
         View::assign('categoryId',$categoryId);
+
+        //手机版 6个推荐产品图 prd_istopping为1
+        $prdListMobile = Db::table('sys_product')->json(['prd_pic'])->where('category_id',$categoryId)->where('prd_istopping',1)->field('prd_id,prd_pic')->limit(6)->select();
+//        dump($prdListMobile);
+        foreach ($prdListMobile as $key=>$item) {
+            if ($item['prd_pic'] !== null) {
+                $item['prd_pic'] = config('app.app_host') . str_replace("//", "/", str_replace("\\", "/", $item['prd_pic'][0]['url']));
+            }
+            $prdListMobile[$key] = $item;
+        }
+//        dump($prdListMobile);
+        View::assign('prdListMobile',$prdListMobile);
         //新的是读取类型中的推荐产品图
         $info = Db::table('sys_category')->where('category_id',$categoryId)->json(['category_pic'])->find();
         if($info['category_pic']!==null){
@@ -133,6 +157,9 @@ class Website extends BaseController
             View::assign('exhibitionList',$exhibitionList);
         }
         View::assign('day',$day);
+        if($this->request->isMobile()){
+            return View::fetch('home_mobile');
+        }
         return View::fetch();
     }
     
@@ -174,9 +201,10 @@ class Website extends BaseController
             /**
              * 如果是移动端 则进行模板跳转
              */
-//        if($this->request->isMobile()){
-//            return View::fetch('about_mobile');
-//        }
+
+        }
+        if($this->request->isMobile()){
+            return View::fetch('about_mobile');
         }
             return View::fetch();
 
@@ -203,7 +231,23 @@ class Website extends BaseController
         if($categoryId ==null){
             $categoryId=$categoryList[0]['category_id'];
         }
-
+        if(Lang::getLangSet() == 'en-us' ){
+            $prdListMobile = Db::table('sys_product')->where('category_id',$categoryId)->where('prd_display','in','2,3')->json(['prd_pic'])->field('prd_id,prd_pic')->select();
+        }else{
+            $prdListMobile = Db::table('sys_product')->where('category_id',$categoryId)->where('prd_display','in','1,3')->json(['prd_pic'])->field('prd_id,prd_pic')->select();
+        }
+        if ($prdListMobile!=null) {
+            foreach ($prdListMobile as $key=>$item) {
+                if($item['prd_pic']!==null) {
+                    $item['prd_pic'] = array_map(function ($data){
+                        $data['url'] = config('app.app_host'). str_replace("//","/",str_replace("\\","/",$data['url']));
+                        return $data;
+                    }, $item['prd_pic']);
+                }
+                $prdListMobile[$key] = $item;
+            }
+        }
+        View::assign('prdListmobile',$prdListMobile);
         $pageNum = $this->request->get('pagenum',1);
         $pageSize = $this->request->get('pagesize',12);
         if(Lang::getLangSet() == 'en-us' ){
@@ -228,6 +272,9 @@ class Website extends BaseController
         View::assign('prdList',$prdList);
         View::assign('total',$prdList->total());
         //跳转后的产品页面 根据点击的产品id需要 （型号 描述 包装 外箱只数 尺寸 产品效果图 产品图）
+        if($this->request->isMobile()){
+            return View::fetch('product_mobile');
+        }
         return View::fetch();
     }
     
@@ -280,6 +327,10 @@ class Website extends BaseController
 //        }
         View::assign('nowlang',Lang::getLangSet());
         View::assign('productEffectPic',$product['prd_effectpic']);
+
+        if($this->request->isMobile()){
+            return View::fetch('product_detail_mobile');
+        }
         return View::fetch();
     }
     
@@ -294,7 +345,41 @@ class Website extends BaseController
         }else{
             View::assign('categoryList',$categoryList);
         }
-        //展览会页面                                                    TODO  图片处理
+        //移动端数据
+        $exhibitionList2 = Db::table('sys_exhibition')->json(['exhibition_pic','exhibition_phaseone','exhibition_phasetwo'])->order('created_time desc')->select()
+            ->each(function ($item){
+                if($item['exhibition_phaseone'] !==null){
+                    $item['exhibition_phaseone'] = $item['exhibition_phaseone'][0].'-'.$item['exhibition_phaseone'][1];
+                }
+                if($item['exhibition_phasetwo'] !==null){
+                    $item['exhibition_phasetwo'] = $item['exhibition_phasetwo'][0].'-'.$item['exhibition_phasetwo'][1];
+                }
+                if($item['exhibition_pic']!==null) {
+                    $item['exhibition_pic'] = array_map(function ($data){
+                        $data['url'] = config('app.app_host') . str_replace("//","/",str_replace("\\","/",$data['url']));
+                        return $data;
+                    }, $item['exhibition_pic']);
+                }
+                return $item;
+            });
+        if(Lang::getLangSet() == 'en-us' && $exhibitionList2 !== null){
+            foreach ($exhibitionList2 as $key=>$exhibition){
+                $exhibition['exhibition_title']=$exhibition['exhibition_engtitle'];
+                //日期改英文
+                $exhibition['exhibition_phaseone']=str_replace('月','/',$exhibition['exhibition_phaseone']);
+                $exhibition['exhibition_phaseone']=str_replace('日','',$exhibition['exhibition_phaseone']);
+                $exhibition['exhibition_phasetwo']=str_replace('月','/',$exhibition['exhibition_phasetwo']);
+                $exhibition['exhibition_phasetwo']=str_replace('日','',$exhibition['exhibition_phasetwo']);
+                $exhibitionList2[$key] = $exhibition;
+            }
+            View::assign('exhibitionList2',$exhibitionList2);
+        }else{
+            View::assign('exhibitionList2',$exhibitionList2);
+        }
+
+
+
+
         $pageNum = $this->request->get('pagenum',1);
         $pageSize = $this->request->get('pagesize',3);
         $exhibitionList = Db::table('sys_exhibition')->json(['exhibition_pic','exhibition_phaseone','exhibition_phasetwo'])->order('created_time desc')->paginate(['list_rows'=> $pageSize, 'page' =>$pageNum ])
@@ -329,7 +414,9 @@ class Website extends BaseController
             View::assign('exhibitionList',$exhibitionList);
         }
         View::assign('total',$exhibitionList->total()) ;
-
+        if($this->request->isMobile()){
+            return View::fetch('exhibition_mobile');
+        }
         return View::fetch();
     }
     
@@ -345,6 +432,9 @@ class Website extends BaseController
             View::assign('categoryList',$categoryList);
         }
 
+        if($this->request->isMobile()){
+            return View::fetch('contact_mobile');
+        }
         return View::fetch();
     }
 }

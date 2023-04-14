@@ -42,9 +42,9 @@
 				<div class="logo"></div>
 				<div class="underline-title">{:lang('f-company_name')}</div>
 				{foreach $aboutArticle as $item}
-				<div class="info-text">
+				<p class="info-text" style="text-indent: 2em">
 					{$item}
-				</div>
+				</p>
 				{/foreach}
 				<div class="number-box">
 					<div class="number-item">
@@ -118,7 +118,7 @@
 							<img src="{$equipmentPicList[1]['url']|default = '' }" onerror="this.src='/static/images/about/workshop2.png'" width="471px" height="299px" alt="workshopimg1">
 						</div>
 						<div class="img-small">
-							<img src="{ $equipmentPicList[2]['url']|default = '' }" onerror="this.src='/static/images/about/workshop3.png'" width="471px" height="299px" alt="workshopimg1">
+							<img src="{$equipmentPicList[2]['url']|default = '' }" onerror="this.src='/static/images/about/workshop3.png'" width="471px" height="299px" alt="workshopimg1">
 						</div>
 					</div>
 				</div>
@@ -134,13 +134,13 @@
 				<div class="link-box">
 					<a href="{:url('website')}" class="link bold mb30">{:lang('h-home')}</a>
 					<a href="{:url('about')}" class="link bold">{:lang('h-about')}</a>
-					<a href="{:url('about')}" class="link">{:lang('f-company_intro')}</a>
-					<a href="{:url('about')}" class="link">{:lang('f-company_culture')}</a>
-					<a href="{:url('about')}" class="link">{:lang('f-development_history')}</a>
+<!--					<a href="{:url('about')}" class="link">{:lang('f-company_intro')}</a>-->
+<!--					<a href="{:url('about')}" class="link">{:lang('f-company_culture')}</a>-->
+<!--					<a href="{:url('about')}" class="link">{:lang('f-development_history')}</a>-->
 				</div>
 				<div class="link-box">
 					<a href="{:url('product')}" class="link bold">{:lang('h-product')}</a>
-					<a href="{:url('product')}" class="link">{:lang('p-new')}</a>
+<!--					<a href="{:url('product')}" class="link">{:lang('p-new')}</a>-->
 					<a href="{:url('product')}" class="link">{$categoryList[0]['category_name'] | default=''}</a>
 					<a href="{:url('product')}" class="link">{$categoryList[1]['category_name'] | default=''}</a>
 					<a href="{:url('product')}" class="link">{$categoryList[2]['category_name'] | default=''}</a>

@@ -29,7 +29,8 @@ Route::get('user/userinfo','admin.Index/userinfo')->middleware(\thans\jwt\middle
 //图片上传删除
 Route::post('common/uploadpic','common.common/uploadpic');
 Route::delete('common/deletePic','common.common/deletePic');
-Route::get('common/getproductbypage','common.common/getProductBypage');
+
+
 
 
 //hardware接口
@@ -41,7 +42,9 @@ Route::group('hardware',function (){
     Route::put('category/commitupdate','hardware.category/commitUpdate');
     Route::post('category/commitinsert','hardware.category/commitInsert');
 
+    Route::get('product/gettoppingcount','hardware.product/getToppingCount');
     Route::get('product/getproductbypage','hardware.product/getProductByPage');
+    Route::put('product/updatestatus','hardware.product/updateStatus');
     Route::put('product/updateproduct','hardware.product/updateProduct');
     Route::get('product/getproductbypage','hardware.product/getProductBypage');
     Route::delete('product/deleteproducts','hardware.product/deleteProducts');
@@ -61,9 +64,10 @@ Route::group('company',function (){
 
 Route::group('mail',function (){
     Route::get('message/getmessagelist','mail.message/getMessageList');
-    Route::post('message/insertmessage','mail.message/insertMessage');
+
     Route::delete('message/deletemessages','mail.message/deleteMessages');
 })->middleware(\thans\jwt\middleware\JWTAuth::class)->allowCrossDomain(['Authorization']);
+Route::post('mail/message/insertmessage','mail.message/insertMessage');
 Route::group('dashboard',function (){
     Route::get('piclist/getpiclist','dashboard.piclist/getPicList');
     Route::post('piclist/insertpic','dashboard.piclist/insertPic');
@@ -77,7 +81,8 @@ Route::get('common/test/list','common.test/list');
 Route::get('common/test/product','common.test/product');
 Route::get('common/test/exhibition','common.test/exhibition');
 Route::get('common/test/introduce','common.test/introduce');
-
+Route::get('common/getproductbypage','common.common/getProductBypage');
+Route::get('common/getproductlistinmobile','common.common/getProductListInMobile');
 //website
 Route::get('website/about', 'website/about')->middleware(\app\middleware\Checklang::class);
 Route::get('website/product', 'website/product')->middleware(\app\middleware\Checklang::class);

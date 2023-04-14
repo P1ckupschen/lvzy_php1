@@ -1,17 +1,23 @@
 <?php
 
 namespace app\controller\hardware;
+require_once('app/result/Result.php');
 
 use app\BaseController;
+use app\result\Result\Result;
+use think\Exception;
 use think\facade\Db;
 use think\Request;
 
 class Category extends BaseController
 {
     public function getToppingCount(){
-        $count = Db::table('sys_category')->where('category_istopping', 1)->count();
-
-        return json($count);
+        try {
+            $count = Db::table('sys_category')->where('category_istopping', 1)->count();
+        }catch (Exception $e){
+            return Result::Error('10001','获取列表数据异常请重试');
+        }
+        return Result::Success('成功');
     }
 
     /**
@@ -20,19 +26,27 @@ class Category extends BaseController
     public function getCategoryListByPage(){
         $pageNum = $this->request->get('pageNum');
         $pageSize = $this->request->get('pageSize');
-        $categoryList= Db::table('sys_category')->json(['category_pic'])->paginate(['list_rows'=> $pageSize, 'page' => $pageNum]);
-        return json($categoryList);
+        try {
+            $categoryList= Db::table('sys_category')->json(['category_pic'])->paginate(['list_rows'=> $pageSize, 'page' => $pageNum]);
+        }catch (Exception $e){
+            return Result::Error('10001','获取列表数据异常请重试');
+        }
+        return Result::Success($categoryList);
     }
     /**
      *                      页面获得分类数据
      */
     public function getCategoryList(){
-        if($this->request->get('topping')!==null){
-            $categoryList= Db::table('sys_category')->where('category_istopping',1)->json(['category_pic'])->select();
-        }else{
-            $categoryList= Db::table('sys_category')->json(['category_pic'])->select();
+        try {
+            if($this->request->get('topping')!==null){
+                $categoryList= Db::table('sys_category')->where('category_istopping',1)->json(['category_pic'])->select();
+            }else{
+                $categoryList= Db::table('sys_category')->json(['category_pic'])->select();
+            }
+        }catch (Exception $e){
+            return Result::Error('10001','操作异常请重试');
         }
-        return json($categoryList);
+        return Result::Success($categoryList);
     }
 
 
@@ -42,21 +56,38 @@ class Category extends BaseController
     public function deleteCategoryById(){
         $param = $this->request->param();
         $categoryId = $param['category_id'];
-        Db::table('sys_category')->delete($categoryId);
+        try {
+            Db::table('sys_category')->delete($categoryId);
+        }catch (Exception $e){
+            return Result::Error('10001','获取列表数据异常请重试');
+        }
+        return Result::Success('成功');
     }
     /**
      *                      更新分类数据
      */
     public function commitUpdate(){
         $param = $this->request->put();
-        Db::table('sys_category')->json(['category_pic'])->update($param);
+
+        try {
+            Db::table('sys_category')->json(['category_pic'])->update($param);
+        }catch (Exception $e){
+            return Result::Error('10001','获取列表数据异常请重试');
+        }
+        return Result::Success('成功');
     }
     /**
      *                      新增分类数据
      */
     public function commitInsert(){
         $param = $this->request->post();
-        Db::table('sys_category')->json(['category_pic'])->save($param);
+
+        try {
+            Db::table('sys_category')->json(['category_pic'])->save($param);
+        }catch (Exception $e){
+            return Result::Error('10001','获取列表数据异常请重试');
+        }
+        return Result::Success('成功');
     }
 
 }

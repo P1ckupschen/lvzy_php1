@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+	<title>{:lang('h-home')}</title>
+	<link rel="stylesheet" href="/static/style/mobile/mobile.css"></link>
+	<link rel="stylesheet" href="/static/style/mobile/home.css"></link>
+	<!-- Link Swiper's CSS -->
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="/static/swiper/swiper-bundle.min.css" />
+	<script crossorigin="anonymous" src="https://cdn.bootcdn.net/ajax/libs/axios/0.19.2/axios.js"></script>
+</head>
+<body>
+	<div class="home base">
+		<div class="navbar">
+			<div class="logo"></div>
+			<div class="dropdown">
+				<input type="checkbox" name="btn" id="m-btn">
+				<label class="menu-btn" for="m-btn"></label>
+				<div class="dropdown-content">
+					<a href="{:url('website')}"><img src="/static/mobile/icons/navbar/home.svg" alt="home">{:lang('h-home')}</a>
+					<a href="{:url('website/about')}"><img src="/static/mobile/icons/navbar/about.svg" alt="about">{:lang('h-about')}</a>
+					<a href="{:url('website/product')}"><img src="/static/mobile/icons/navbar/product.svg" alt="product">{:lang('h-product')}</a>
+					<a href="{:url('website/exhibition')}"><img src="/static/mobile/icons/navbar/exhibition.svg" alt="exhibition">{:lang('h-exhibition')}</a>
+					<a href="{:url('website/contact')}"><img src="/static/mobile/icons/navbar/contact.svg" alt="contact">{:lang('h-contact')}</a>
+				</div>
+			</div>
+		</div>
+
+		<div class="banner">
+			<div class="bannertext-container">
+				<div class="banner-text">{:lang('banner-1.1')}</div>
+				<div class="banner-text">{:lang('banner-1.2')}</div>
+				<div class="banner-subtext">{:lang('banner-2')}</div>
+				<div class="detail-btn">{:lang('detail-btn')}</div>
+			</div>
+			<div class="bannerSwiper">
+				<div class="swiper-wrapper">
+					{voList name='urlList' id='url'}
+					<div class="swiper-slide" >
+						<img src="{$url['pic_url']}" alt="banner" >
+					</div>
+					{/voList}
+<!--					<div class="swiper-slide">-->
+<!--						<img src="/static/mobile/images/home/banner1.png" alt="banner1">-->
+<!--					</div>-->
+<!--					<div class="swiper-slide">-->
+<!--						<img src="/static/mobile/images/home/banner2.png" alt="banner2">-->
+<!--					</div>-->
+				</div>
+				<div class="banner-pagination"></div>
+			</div>
+		</div>
+
+		<div class="company base-padding">
+			<div class="underline-title">{:lang('about_us')}</div>
+			<div class="info-box">
+				<div class="info-title">{:lang('f-company_name')}</div>
+				<div class="info-text">
+					{foreach $dashboardArticle as $item}
+					<p style="text-indent: 2em">
+						{$item}
+					</p >
+					{/foreach}
+				</div>
+			</div>
+
+			<div class="number-box">
+				<div class="number-item">
+					<div class="row">
+						<div class="num">20000</div>
+						<div class="unit">㎡</div>
+					</div>
+					<div class="text">{:lang('total_area')}</div>
+				</div>
+				<div class="number-item">
+					<div class="row">
+						<div class="num">11000</div>
+						<div class="unit">㎡</div>
+					</div>
+					<div class="text">{:lang('phase_one_construction')}</div>
+				</div>
+				<div class="number-item">
+					<div class="row">
+						<div class="num">10</div>
+						<div class="unit">+</div>
+					</div>
+					<div class="text">{:lang('product_series')}</div>
+				</div>
+			</div>
+
+			<img class="company-img" src="/static/mobile/images/home/company.png" alt="company">
+		</div>
+
+		<div class="products base-padding">
+			<div class="underline-title">{:lang('product_display')}</div>
+			<select name="product-series" id="product-series" onchange="changeC()" class="series-selector">
+				{foreach $categoryListmobile as $category}
+					<!--                     <a id="aaa" class="cate-item {$category['category_id'] == $categoryId ? 'current' : ''}" href="?categoryid={$category['category_id']}">{$category['category_name']}</a>-->
+					<option id="aaa" value="{$category['category_id']}" >{$category['category_name']}</option>
+				{/foreach}
+				<option value="100" >{:lang('p-other')}</option>
+			</select>
+			<div class="series-container">
+<!--				显示每个类推荐的至多6个产品-->
+				{foreach $prdListMobile as $item}
+				<a href="{:url('website/product_detail')}?prdid={$item['prd_id']}">
+					<div class="series-wrapper">
+						<div class="series-item">
+							<img src="{$item['prd_pic']}" alt="">
+						</div>
+					</div>
+				</a>
+				{/foreach}
+			</div>
+		</div>
+
+
+		<div class="exhibition base-padding">
+			<div class="underline-title">{:lang('exhibition_news')}</div>
+			<div class="img-box">
+				<div class="img-wrapper">
+					<img src="{$exhibitionList[0]['exhibition_pic'][0]['url'] | default=''}" width="358px"
+						 height="230px" alt="exhibition">
+				</div>
+				<div class="info-row">
+					<div class="date-box">
+						<div class="day">{$day[0]}</div>
+						<div class="month">{$exhibitionList[0]['created_time']}</div>
+					</div>
+					<div class="title">{$exhibitionList[0]['exhibition_title']}</div>
+				</div>
+			</div>
+			<div class="exhibition-list">
+				<div class="list-item">
+					<input type="checkbox" id="item1">
+					<label class="title" for="item1">
+						<div class="date">{$exhibitionList[1]['created_time']}-{$day[1]}</div>
+						<div class="label">{$exhibitionList[1]['exhibition_title']}</div>
+						<div class="arrow"></div>
+					</label>
+					<div class="exhibition-detail-box">
+						<div class="time">{:lang('exhibition_time')}：{$exhibitionList[1]['exhibition_phaseone']}</div>
+						<div class="address">{:lang('booth_number')}：{$exhibitionList[1]['exhibition_boothone']}</div>
+					</div>
+				</div>
+				<div class="list-item">
+					<input type="checkbox" id="item2">
+					<label class="title" for="item2">
+						<div class="date">{$exhibitionList[2]['created_time']}-{$day[2]}</div>
+						<div class="label">{$exhibitionList[2]['exhibition_title']}</div>
+						<div class="arrow"></div>
+					</label>
+					<div class="exhibition-detail-box">
+						<div class="time">{:lang('exhibition_time')}：{$exhibitionList[2]['exhibition_phaseone']}</div>
+						<div class="address">{:lang('booth_number')}：{$exhibitionList[2]['exhibition_boothone']}</div>
+					</div>
+				</div>
+				<div class="list-item">
+					<input type="checkbox" id="item3">
+					<label class="title" for="item3">
+						<div class="date">{$exhibitionList[3]['created_time']}-{$day[3]}</div>
+						<div class="label">{$exhibitionList[3]['exhibition_title']}</div>
+						<div class="arrow"></div>
+					</label>
+					<div class="exhibition-detail-box">
+						<div class="time">{:lang('exhibition_time')}：{$exhibitionList[3]['exhibition_phaseone']}</div>
+						<div class="address">{:lang('booth_number')}：{$exhibitionList[3]['exhibition_boothone']}</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="contact base-padding">
+			<div class="underline-title">{:lang('h-contact')}</div>
+
+			<div class="list">
+				<div class="list-item">
+					<div class="icon">
+						<img src="/static/mobile/images/home/phone.png" alt="phone">
+					</div>
+					<div class="label">{:lang('phone')}：</div>
+					<div class="content">0086-574-63287088</div>
+				</div>
+				<div class="list-item">
+					<div class="icon">
+						<img src="/static/mobile/images/home/fax.png" alt="fax">
+					</div>
+					<div class="label">{:lang('fax')}：</div>
+					<div class="content">0086-574-63287765</div>
+				</div>
+				<div class="list-item">
+					<div class="icon">
+						<img src="/static/mobile/images/home/mail.png" alt="mail">
+					</div>
+					<div class="label">{:lang('mail')}：</div>
+					<div class="content">gsgt@nblzy.com</div>
+				</div>
+				<div class="list-item">
+					<div class="icon">
+						<img src="/static/mobile/images/home/location.png" alt="location">
+					</div>
+					<div class="label">{:lang('address')}：</div>
+					<div class="content">{:lang("addr")}</div>
+				</div>
+			</div>
+
+			<div class="map-wrapper" id="map">
+
+			</div>
+		</div>
+
+
+		<div class="footer">
+			<div class="logo"></div>
+			<div class="name">{:lang('f-company_name')}</div>
+		</div>
+	</div>
+	<script>
+		var url = window.location.toString();
+
+		$("#product-series").val(1);
+
+		function changeC() {
+			// console.log('sdsd')
+			var seletor = document.getElementById('product-series');
+			var index = seletor.selectedIndex;
+			var val = seletor.options[index].value
+			var container =[]
+			if (val == 100) {
+				window.location.href = '{:url(\'website/product\')}'
+			} else {
+					axios({
+						method:'get',
+						url:'/index.php/common/getProductListInMobile',
+						params:{
+							categoryid:val
+						}
+					}).then((response)=>{
+						container = response.data
+						// console.log(container)
+						for(let i = 0 ;i<6 ; i++){
+							if(container !== null && container[i] != null && container[i]['prd_pic'] !== null){
+								// console.log(container[i]['prd_pic'])
+								document.getElementsByTagName('img')[i+11].src=container[i]['prd_pic'];
+								document.getElementsByTagName('a')[i+5].href=`{:url('website/product_detail')}?prdid=${container[i]['prd_id']}`
+							}else{
+								// console.log('没设置')
+								document.getElementsByTagName('img')[i+11].src = '';
+								document.getElementsByTagName('a')[i+5].href=''
+							}
+						}
+						})
+
+				}
+				// $("#product-series").val(val);
+				// console.log(val)
+
+			}
+
+	</script>
+
+	<!-- Swiper JS -->
+    <script src="/static/swiper/swiper-bundle.min.js"></script>
+
+    <!-- Initialize Swiper -->
+    <script>
+      var bannerSwiper = new Swiper(".bannerSwiper", {
+        loop: true,
+		pagination: {
+			el: '.banner-pagination'
+		}
+      });
+    </script>
+
+	<!-- init map -->
+	<script src="https://webapi.amap.com/loader.js"></script>
+	<script type="text/javascript" >
+	AMapLoader.load({
+		"key": "f4a641dc246e0bb5762af876525d3b93",              // 申请好的Web端开发者Key，首次调用 load 时必填
+		// "version": "2.0",   // 指定要加载的 JSAPI 的版本，缺省时默认为 1.4.15, 1.4.15才有英文显示
+		"plugins": [],           // 需要使用的的插件列表，如比例尺'AMap.Scale'等
+		"AMapUI": {             // 是否加载 AMapUI，缺省不加载
+			"version": '1.1',   // AMapUI 版本
+			"plugins":['overlay/SimpleMarker'],       // 需要加载的 AMapUI ui插件
+		},
+	}).then((AMap)=>{
+			var map = new AMap.Map('map', {
+				center: [121.235724,30.219665],
+				zoom: 16,
+				lang: 'zh_en',
+			});
+			window.mmm = map
+			// console.log(map)
+			// map.addControl(new AMap.Scale());
+			let marker = new AMap.Marker({
+				position: new AMap.LngLat(121.235724,30.219665),
+				title: "{:lang('f-company_name')}",
+			});
+			map.add(marker);
+			// map.on('click', (ev)=> {
+			// 	console.log('target:', ev.target);
+			// 	console.log('您在[ '+ev.lnglat.getLng()+','+ev.lnglat.getLat()+' ]的位置点击了地图！')
+			// });
+		}).catch((e)=>{
+			console.error(e);  //加载错误提示
+		});   
+	</script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+	<title>{:lang('h-product')}</title>
+	<link rel="stylesheet" href="/static/style/mobile/mobile.css"></link>
+	<link rel="stylesheet" href="/static/style/mobile/product_detail.css"></link>
+</head>
+<body>
+	<div class="product_detail base">
+		<div class="navbar">
+			<div class="logo"></div>
+			<div class="dropdown">
+				<input type="checkbox" name="btn" id="m-btn">
+				<label class="menu-btn" for="m-btn"></label>
+				<div class="dropdown-content">
+					<a href="{:url('website')}"><img src="/static/mobile/icons/navbar/home.svg" alt="home">{:lang('h-home')}</a>
+					<a href="{:url('website/about')}"><img src="/static/mobile/icons/navbar/about.svg" alt="about">{:lang('h-about')}</a>
+					<a href="{:url('website/product')}"><img src="/static/mobile/icons/navbar/product.svg" alt="product">{:lang('h-product')}</a>
+					<a href="{:url('website/exhibition')}"><img src="/static/mobile/icons/navbar/exhibition.svg" alt="exhibition">{:lang('h-exhibition')}</a>
+					<a href="{:url('website/contact')}"><img src="/static/mobile/icons/navbar/contact.svg" alt="contact">{:lang('h-contact')}</a>
+				</div>
+			</div>
+		</div>
+
+		<div class="banner">
+			<img src="{$productItem.prd_pic[0]['url']  | default='' }" style="width: 380px;height: 337px" alt="detail">
+		</div>
+
+		<div class="name">{$productItem.prd_modelname}</div>
+
+		<div class="desc-box">
+			<div class="label">{:lang('product_description')}：</div>
+			{voList name='productDescription' id='textItem'}
+			<div class="content dot">{$textItem}</div>
+			{/voList}
+		</div>
+
+		<div class="desc-box">
+			<div class="label">{:lang('product_packaging')}：</div>
+			<div class="content dot">{$productItem.prd_packaging}</div>
+		</div>
+		<?php if($nowlang !== 'en-us'){
+						?>
+		<div class="desc-box">
+			<div class="label">{:lang('product_caton_num')}：</div>
+			<div class="content dot">{$productItem.prd_count}</div>
+		</div>
+		<?php
+						}?>
+
+		<div class="desc-box">
+			<div class="label">{:lang('product_caton_size')}：</div>
+			<div class="content">{$productItem.prd_size}</div>
+		</div>
+
+		<div class="desc-box">
+			<div class="label">{:lang('product_spray_effect')}：</div>
+			<div class="images">
+				{voList name='productEffectPic' id="item"}
+				<div class="img-wrapper">
+					<img src="{$item['url']  | default='' }" style="width: 158px;height: 79px" alt="detail">
+				</div>
+				{/voList}
+<!--				{for start='0' end='4'}-->
+<!--				<div class="img-wrapper">-->
+<!--					<img src="/static/mobile/images/product_detail/spray.png" alt="banner">-->
+<!--				</div>-->
+<!--				{/for}-->
+			</div>
+		</div>
+	</div>
+</body>
+</html>

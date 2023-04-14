@@ -1,6 +1,6 @@
 <?php
 namespace app\controller\admin;
-
+require_once('app/result/Result.php');
 use app\BaseController;
 use app\model\user;
 use thans\jwt\facade\JWTAuth;

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+	<title>{:lang('h-product')}</title>
+	<link rel="stylesheet" href="/static/style/mobile/mobile.css"></link>
+	<link rel="stylesheet" href="/static/style/mobile/product.css"></link>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script crossorigin="anonymous" src="https://cdn.bootcdn.net/ajax/libs/axios/0.19.2/axios.js"></script>
+</head>
+<body>
+	<div class="product base">
+		<div class="navbar">
+			<div class="logo"></div>
+			<div class="dropdown">
+				<input type="checkbox" name="btn" id="m-btn">
+				<label class="menu-btn" for="m-btn"></label>
+				<div class="dropdown-content">
+					<a href="{:url('website')}"><img src="/static/mobile/icons/navbar/home.svg" alt="home">{:lang('h-home')}</a>
+					<a href="{:url('website/about')}"><img src="/static/mobile/icons/navbar/about.svg" alt="about">{:lang('h-about')}</a>
+					<a href="{:url('website/product')}"><img src="/static/mobile/icons/navbar/product.svg" alt="product">{:lang('h-product')}</a>
+					<a href="{:url('website/exhibition')}"><img src="/static/mobile/icons/navbar/exhibition.svg" alt="exhibition">{:lang('h-exhibition')}</a>
+					<a href="{:url('website/contact')}"><img src="/static/mobile/icons/navbar/contact.svg" alt="contact">{:lang('h-contact')}</a>
+				</div>
+			</div>
+		</div>
+
+		<div class="banner">
+			<img src="/static/mobile/images/product/banner.png" alt="banner">
+		</div>
+
+
+		<div class="products base-padding">
+			<div class="underline-title">{:lang('product_display')}</div>
+			<select name="product-series" id="product-series" onchange="getchange()" class="series-selector" value="">
+				{foreach $categoryList as $category}
+				<option id="aaa" value="{$category['category_id']}" onclick="change({$category['category_id']})">{$category['category_name']}</option>
+				{/foreach}
+<!--				<option value="1">1</option>-->
+<!--				<option value="2">2</option>-->
+			</select>
+			<div class="series-container">
+				{foreach $prdListmobile as $product}
+				<a href="{:url('website/product_detail')}?prdid={$product['prd_id']}" style="width: 186px;height: 160px">
+					<div class="series-wrapper">
+						<div class="series-item">
+						<img src="{$product['prd_pic'][0]['url'] | default='' }" alt="productimg" style="height: 120px;width: 120px">
+						</div>
+					</div>
+				</a>
+				{/foreach}
+<!--				{for start='0' end='8'}-->
+<!--				<a href="{:url('mobile/product_detail')}">-->
+<!--					<div class="series-wrapper">-->
+<!--						<div class="series-item">-->
+<!--							<img src="/static/mobile/images/product/item-pic.png" alt="product-item">-->
+<!--						</div>-->
+<!--					</div>-->
+<!--				</a>-->
+<!--				{/for}-->
+			</div>
+		</div>
+
+		
+		<div class="footer">
+			<div class="logo"></div>
+			<div class="name">{:lang('f-company_name')}</div>
+		</div>
+	</div>
+
+
+	<script>
+		var url = window.location.toString();
+		var urlParams = getUrlParams(url);
+		$("#product-series").val(urlParams['categoryid'] || 1);
+		async function getchange() {
+			var select = document.getElementById('product-series');
+			var index = select.selectedIndex;
+			// console.log('index',index);
+			var val = select.options[index].value
+			// console.log('val',val);
+			var url = window.location.toString();
+			// console.log('index',index);
+
+			// console.log('url',url);
+			window.location.href=`?categoryid=${val}`;
+		}
+		function getUrlParams(url) {
+			let urlStr = url.split('?')[1];
+			// 创建空对象存储参数
+			let obj = {};
+			// 再通过 & 将每一个参数单独分割出来
+			if(urlStr!=null){
+				// console.log("进来了")
+				let paramsArr = urlStr.split('&');
+				// console.log(paramsArr);
+				for(let i = 0,len = paramsArr.length;i < len;i++) {
+					// 再通过 = 将每一个参数分割为 key:value 的形式
+					let arr = paramsArr[i].split('=');
+					obj[arr[0]] = arr[1];
+				}
+				return obj;
+			}else {
+				obj['pagenum']=1;
+				return obj;
+			}
+		}
+	</script>
+</body>
+</html>

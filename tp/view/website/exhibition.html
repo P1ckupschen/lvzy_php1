@@ -68,13 +68,13 @@
 				<div class="link-box">
 					<a href="{:url('website')}" class="link bold mb30">{:lang('h-home')}</a>
 					<a href="{:url('about')}" class="link bold">{:lang('h-about')}</a>
-					<a href="{:url('about')}" class="link">{:lang('f-company_intro')}</a>
-					<a href="{:url('about')}" class="link">{:lang('f-company_culture')}</a>
-					<a href="{:url('about')}" class="link">{:lang('f-development_history')}</a>
+<!--					<a href="{:url('about')}" class="link">{:lang('f-company_intro')}</a>-->
+<!--					<a href="{:url('about')}" class="link">{:lang('f-company_culture')}</a>-->
+<!--					<a href="{:url('about')}" class="link">{:lang('f-development_history')}</a>-->
 				</div>
 				<div class="link-box">
 					<a href="{:url('product')}" class="link bold">{:lang('h-product')}</a>
-					<a href="{:url('product')}" class="link">{:lang('p-new')}</a>
+<!--					<a href="{:url('product')}" class="link">{:lang('p-new')}</a>-->
 					<a href="{:url('product')}" class="link">{$categoryList[0]['category_name'] | default=''}</a>
 					<a href="{:url('product')}" class="link">{$categoryList[1]['category_name'] | default=''}</a>
 					<a href="{:url('product')}" class="link">{$categoryList[2]['category_name'] | default=''}</a>
@@ -144,8 +144,8 @@
 				next: "{:lang('page_next')}",
 				jump: (obj, first) => {
 					//obj包含了当前分页的所有参数，比如：
-					console.log(obj.curr); //得到当前页，以便向服务端请求对应页的数据。
-					console.log(obj.limit); //得到每页显示的条数
+					// console.log(obj.curr); //得到当前页，以便向服务端请求对应页的数据。
+					// console.log(obj.limit); //得到每页显示的条数
 
 					//首次不执行
 					if(!first){

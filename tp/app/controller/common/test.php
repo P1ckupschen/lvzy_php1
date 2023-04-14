@@ -3,6 +3,7 @@
 namespace app\controller\common;
 
 use app\BaseController;
+use app\common\exception;
 use think\facade\Db;
 use think\facade\View;
 /**
@@ -80,7 +81,12 @@ class test extends BaseController
         }else{
             View::assign('exhibitionList',$exhibitionList);
         }
-
+        $a = 0;
+        try {
+            test($a);
+        }catch (\think\Exception $e ){
+            dump('sdsd');
+        }
         return View::fetch();
     }
     public function introduce(){
