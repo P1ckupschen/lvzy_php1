@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+	<title>{:lang('h-about')}</title>
+	<link rel="stylesheet" href="/static/style/mobile/mobile.css"></link>
+	<link rel="stylesheet" href="/static/style/mobile/about.css"></link>
+</head>
+<body>
+	<div class="about base">
+		<div class="navbar">
+			<div class="logo"></div>
+			<div class="dropdown">
+				<input type="checkbox" name="btn" id="m-btn">
+				<label class="menu-btn" for="m-btn"></label>
+				<div class="dropdown-content">
+					<a href="{:url('mobile')}"><img src="/static/mobile/icons/navbar/home.svg" alt="home">{:lang('h-home')}</a>
+					<a href="{:url('mobile/about')}"><img src="/static/mobile/icons/navbar/about.svg" alt="about">{:lang('h-about')}</a>
+					<a href="{:url('mobile/product')}"><img src="/static/mobile/icons/navbar/product.svg" alt="product">{:lang('h-product')}</a>
+					<a href="{:url('mobile/exhibition')}"><img src="/static/mobile/icons/navbar/exhibition.svg" alt="exhibition">{:lang('h-exhibition')}</a>
+					<a href="{:url('mobile/contact')}"><img src="/static/mobile/icons/navbar/contact.svg" alt="contact">{:lang('h-contact')}</a>
+				</div>
+			</div>
+		</div>
+
+		<div class="banner">
+			<img src="/static/mobile/images/about/banner.png" alt="banner">
+		</div>
+
+		<div class="info-box base-padding">
+			<div class="logo"></div>
+			<div class="underline-title">{:lang('f-company_name')}</div>
+			<div class="info-text">
+				<p>
+				宁波绿之源工具有限公司是园艺喷水器的专业生产厂家，座落于杭州湾大桥南岸，紧邻329国道复线，占地面积达20000平方米，其中一期工程建筑面积11000平方米，是一个具有现代化生产规模和设备的新型工厂。
+				</p>
+				<p>
+				公司聚集了大批长期从事园艺工具设计、开发、技术和品质管理、生产管理的专业技术人才。具有强大的产品研发的能力和丰富的生产经验。公司拥有国内先进的压铸、注塑和机械加工等的生产设备，设施齐全，坚持把先进的科技产品与生产技术齐头并进。
+				</p>
+				<p>
+					本公司注重产品的研究开发，我们的产品具有类型齐全，结构合理，外形美观，造型别致等特点。深受国内外新老客户的肯
+					定，欢迎广大客户了解本公司的产品，参与合作，共谋发展。并接受意向客户来样、来图委托开发。
+				</p>
+			</div>
+
+			<div class="number-box">
+				<div class="number-item">
+					<div class="row">
+						<div class="num">20000</div>
+						<div class="unit">㎡</div>
+					</div>
+					<div class="text">{:lang('total_area')}</div>
+				</div>
+				<div class="number-item">
+					<div class="row">
+						<div class="num">11000</div>
+						<div class="unit">㎡</div>
+					</div>
+					<div class="text">{:lang('phase_one_construction')}</div>
+				</div>
+				<div class="number-item">
+					<div class="row">
+						<div class="num">10</div>
+						<div class="unit">+</div>
+					</div>
+					<div class="text">{:lang('product_series')}</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="banner2 base-padding">
+			<div class="list">
+				<div class="label-item">
+					<div class="container">
+						<div class="logo">
+							<img src="/static/mobile/images/about/icon1.png" alt="icon1">
+						</div>
+						<div class="label">{:lang('core_value')}</div>
+						<div class="content">{:lang('core_value_detail')}</div>
+					</div>
+				</div>
+				<div class="label-item">
+					<div class="container">
+						<div class="logo">
+							<img src="/static/mobile/images/about/icon2.png" alt="icon2">
+						</div>
+						<div class="label">{:lang('core_concept')}</div>
+						<div class="content">{:lang('core_concept_detail')}</div>
+					</div>
+				</div>
+				<div class="label-item">
+					<div class="container">
+						<div class="logo">
+							<img src="/static/mobile/images/about/icon3.png" alt="icon3">
+						</div>
+						<div class="label">{:lang('entrepreneurial_spirit')}</div>
+						<div class="content">{:lang('entrepreneurial_spirit_detail')}</div>
+					</div>
+				</div>
+				<div class="label-item">
+					<div class="container">
+						<div class="logo">
+							<img src="/static/mobile/images/about/icon4.png" alt="icon4">
+						</div>
+						<div class="label">{:lang('strategic_goal')}</div>
+						<div class="content">{:lang('strategic_goal_detail')}</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="workshop base-padding">
+			<div class="underline-title">{:lang('workshop_equipment')}</div>
+			<div class="img-container">
+				<div class="img-wrapper small">
+					<img src="/static/mobile/images/about/eq1.png" alt="eq1">
+				</div>
+				<div class="img-wrapper small">
+					<img src="/static/mobile/images/about/eq2.png" alt="eq2">
+				</div>
+				<div class="img-wrapper big">
+					<img src="/static/mobile/images/about/eq3.png" alt="eq3">
+				</div>
+			</div>
+		</div>
+		
+		<div class="footer">
+			<div class="logo"></div>
+			<div class="name">{:lang('f-company_name')}</div>
+		</div>
+	</div>
+</body>
+</html>

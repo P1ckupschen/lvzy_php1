@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+	<title>{:lang('h-home')}</title>
+	<link rel="stylesheet" href="/static/style/mobile/mobile.css"></link>
+	<link rel="stylesheet" href="/static/style/mobile/home.css"></link>
+	<!-- Link Swiper's CSS -->
+    <link rel="stylesheet" href="/static/swiper/swiper-bundle.min.css" />
+</head>
+<body>
+	<div class="home base">
+		<div class="navbar">
+			<div class="logo"></div>
+			<div class="dropdown">
+				<input type="checkbox" name="btn" id="m-btn">
+				<label class="menu-btn" for="m-btn"></label>
+				<div class="dropdown-content">
+					<a href="{:url('mobile')}"><img src="/static/mobile/icons/navbar/home.svg" alt="home">{:lang('h-home')}</a>
+					<a href="{:url('mobile/about')}"><img src="/static/mobile/icons/navbar/about.svg" alt="about">{:lang('h-about')}</a>
+					<a href="{:url('mobile/product')}"><img src="/static/mobile/icons/navbar/product.svg" alt="product">{:lang('h-product')}</a>
+					<a href="{:url('mobile/exhibition')}"><img src="/static/mobile/icons/navbar/exhibition.svg" alt="exhibition">{:lang('h-exhibition')}</a>
+					<a href="{:url('mobile/contact')}"><img src="/static/mobile/icons/navbar/contact.svg" alt="contact">{:lang('h-contact')}</a>
+				</div>
+			</div>
+		</div>
+
+		<div class="banner">
+			<div class="bannertext-container">
+				<div class="banner-text">{:lang('banner-1.1')}</div>
+				<div class="banner-text">{:lang('banner-1.2')}</div>
+				<div class="banner-subtext">{:lang('banner-2')}</div>
+				<div class="detail-btn">{:lang('detail-btn')}</div>
+			</div>
+			<div class="bannerSwiper">
+				<div class="swiper-wrapper">
+					<div class="swiper-slide">
+						<img src="/static/mobile/images/home/banner1.png" alt="banner1">
+					</div>
+					<div class="swiper-slide">
+						<img src="/static/mobile/images/home/banner2.png" alt="banner2">
+					</div>
+				</div>
+				<div class="banner-pagination"></div>
+			</div>
+		</div>
+
+		<div class="company base-padding">
+			<div class="underline-title">{:lang('about_us')}</div>
+			<div class="info-box">
+				<div class="info-title">{:lang('f-company_name')}</div>
+				<div class="info-text">
+					<p>
+					宁波绿之源工具有限公司是园艺喷水器的专业生产厂家，座落于杭州湾大桥南岸，紧邻329国道复线，占地面积达20000平方米，其中一期工程建筑面积11000平方米，是一个具有现代化生产规模和设备的新型工厂。
+					</p>
+					<p>
+					公司聚集了大批长期从事园艺工具设计、开发、技术和品质管理、生产管理的专业技术人才。具有强大的产品研发的能力和丰富的生产经验。公司拥有国内先进的压铸、注塑和机械加工等的生产设备，设施齐全，坚持把先进的科技产品与生产技术齐头并进。
+					</p>
+				</div>
+			</div>
+
+			<div class="number-box">
+				<div class="number-item">
+					<div class="row">
+						<div class="num">20000</div>
+						<div class="unit">㎡</div>
+					</div>
+					<div class="text">{:lang('total_area')}</div>
+				</div>
+				<div class="number-item">
+					<div class="row">
+						<div class="num">11000</div>
+						<div class="unit">㎡</div>
+					</div>
+					<div class="text">{:lang('phase_one_construction')}</div>
+				</div>
+				<div class="number-item">
+					<div class="row">
+						<div class="num">10</div>
+						<div class="unit">+</div>
+					</div>
+					<div class="text">{:lang('product_series')}</div>
+				</div>
+			</div>
+
+			<img class="company-img" src="/static/mobile/images/home/company.png" alt="company">
+		</div>
+
+		<div class="products base-padding">
+			<div class="underline-title">{:lang('product_display')}</div>
+			<select name="product-series" id="product-series" class="series-selector">
+				<option value="1">{:lang('p-new')}</option>
+				<option value="2">{:lang('p-spray_nozzle_series')}</option>
+				<option value="3">{:lang('p-hose_nozzle_set')}</option>
+				<option value="4">{:lang('p-impulse_sprinkler_series')}</option>
+				<option value="5">{:lang('p-oscillating_sprinklers')}</option>
+				<option value="6">{:lang('p-water_wands_series')}</option>
+				<option value="7">{:lang('p-plastic_connecting_fitting_series')}</option>
+				<option value="8">{:lang('p-brass_fitting_series')}</option>
+				<option value="9">{:lang('p-brass_hose_series')}</option>
+				<option value="10">{:lang('p-hose')}</option>
+				<option value="11">{:lang('p-other')}</option>
+			</select>
+			<div class="series-container">
+				{for start='0' end='6'}
+				<a href="{:url('mobile/product_detail')}">
+					<div class="series-wrapper">
+						<div class="series-item">
+							<img src="/static/mobile/images/home/product-item.png" alt="product-item">
+						</div>
+					</div>
+				</a>
+				{/for}
+			</div>
+		</div>
+
+		<div class="exhibition base-padding">
+			<div class="underline-title">展会信息</div>
+			<div class="img-box">
+				<div class="img-wrapper">
+					<img src="/static/mobile/images/home/exhibition.png" alt="exhibition">
+				</div>
+				<div class="info-row">
+					<div class="date-box">
+						<div class="day">17</div>
+						<div class="month">2023-3</div>
+					</div>
+					<div class="title">我们公司将参加第118届广交会</div>
+				</div>
+			</div>
+			<div class="exhibition-list">
+				<div class="list-item">
+					<input type="checkbox" id="item1">
+					<label class="title" for="item1">
+						<div class="date">2015-9-28</div>
+						<div class="label">第118届广交会</div>
+						<div class="arrow"></div>
+					</label>
+					<div class="exhibition-detail-box">
+						<div class="time">参展时间：10月15日-19日</div>
+						<div class="address">摊位号14.2G01</div>
+					</div>
+				</div>
+				<div class="list-item">
+					<input type="checkbox" id="item2">
+					<label class="title" for="item2">
+						<div class="date">2015-9-28</div>
+						<div class="label">第119届广交会</div>
+						<div class="arrow"></div>
+					</label>
+					<div class="exhibition-detail-box">
+						<div class="time">参展时间：10月15日-19日</div>
+						<div class="address">摊位号14.2G01</div>
+					</div>
+				</div>
+				<div class="list-item">
+					<input type="checkbox" id="item3">
+					<label class="title" for="item3">
+						<div class="date">2015-9-28</div>
+						<div class="label">第120届广交会</div>
+						<div class="arrow"></div>
+					</label>
+					<div class="exhibition-detail-box">
+						<div class="time">参展时间：10月15日-19日</div>
+						<div class="address">摊位号14.2G01</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="contact base-padding">
+			<div class="underline-title">联系我们</div>
+
+			<div class="list">
+				<div class="list-item">
+					<div class="icon">
+						<img src="/static/mobile/images/home/phone.png" alt="phone">
+					</div>
+					<div class="label">{:lang('phone')}：</div>
+					<div class="content">0086-574-63287088</div>
+				</div>
+				<div class="list-item">
+					<div class="icon">
+						<img src="/static/mobile/images/home/fax.png" alt="fax">
+					</div>
+					<div class="label">{:lang('fax')}：</div>
+					<div class="content">0086-574-63287765</div>
+				</div>
+				<div class="list-item">
+					<div class="icon">
+						<img src="/static/mobile/images/home/mail.png" alt="mail">
+					</div>
+					<div class="label">{:lang('mail')}：</div>
+					<div class="content">gsgt@nblzy.com</div>
+				</div>
+				<div class="list-item">
+					<div class="icon">
+						<img src="/static/mobile/images/home/location.png" alt="location">
+					</div>
+					<div class="label">{:lang('address')}：</div>
+					<div class="content">中国浙江慈溪市坎墩工业园区</div>
+				</div>
+			</div>
+
+			<div class="map-wrapper" id="map">
+
+			</div>
+		</div>
+
+
+		<div class="footer">
+			<div class="logo"></div>
+			<div class="name">{:lang('f-company_name')}</div>
+		</div>
+	</div>
+
+	<!-- Swiper JS -->
+    <script src="/static/swiper/swiper-bundle.min.js"></script>
+
+    <!-- Initialize Swiper -->
+    <script>
+      var bannerSwiper = new Swiper(".bannerSwiper", {
+        loop: true,
+		pagination: {
+			el: '.banner-pagination'
+		}
+      });
+    </script>
+
+	<!-- init map -->
+	<script src="https://webapi.amap.com/loader.js"></script>
+	<script type="text/javascript" >
+	AMapLoader.load({
+		"key": "f4a641dc246e0bb5762af876525d3b93",              // 申请好的Web端开发者Key，首次调用 load 时必填
+		// "version": "2.0",   // 指定要加载的 JSAPI 的版本，缺省时默认为 1.4.15, 1.4.15才有英文显示
+		"plugins": [],           // 需要使用的的插件列表，如比例尺'AMap.Scale'等
+		"AMapUI": {             // 是否加载 AMapUI，缺省不加载
+			"version": '1.1',   // AMapUI 版本
+			"plugins":['overlay/SimpleMarker'],       // 需要加载的 AMapUI ui插件
+		},
+	}).then((AMap)=>{
+			var map = new AMap.Map('map', {
+				center: [121.235724,30.219665],
+				zoom: 16,
+				lang: 'zh_en',
+			});
+			window.mmm = map
+			console.log(map)
+			// map.addControl(new AMap.Scale());
+			let marker = new AMap.Marker({
+				position: new AMap.LngLat(121.235724,30.219665),
+				title: "{:lang('f-company_name')}",
+			});
+			map.add(marker);
+			// map.on('click', (ev)=> {
+			// 	console.log('target:', ev.target);
+			// 	console.log('您在[ '+ev.lnglat.getLng()+','+ev.lnglat.getLat()+' ]的位置点击了地图！')
+			// });
+		}).catch((e)=>{
+			console.error(e);  //加载错误提示
+		});   
+	</script>
+</body>
+</html>

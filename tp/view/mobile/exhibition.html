@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+	<title>{:lang('h-exhibition')}</title>
+	<link rel="stylesheet" href="/static/style/mobile/mobile.css"></link>
+	<link rel="stylesheet" href="/static/style/mobile/exhibition.css"></link>
+</head>
+<body>
+	<div class="exhibition base">
+		<div class="navbar">
+			<div class="logo"></div>
+			<div class="dropdown">
+				<input type="checkbox" name="btn" id="m-btn">
+				<label class="menu-btn" for="m-btn"></label>
+				<div class="dropdown-content">
+					<a href="{:url('mobile')}"><img src="/static/mobile/icons/navbar/home.svg" alt="home">{:lang('h-home')}</a>
+					<a href="{:url('mobile/about')}"><img src="/static/mobile/icons/navbar/about.svg" alt="about">{:lang('h-about')}</a>
+					<a href="{:url('mobile/product')}"><img src="/static/mobile/icons/navbar/product.svg" alt="product">{:lang('h-product')}</a>
+					<a href="{:url('mobile/exhibition')}"><img src="/static/mobile/icons/navbar/exhibition.svg" alt="exhibition">{:lang('h-exhibition')}</a>
+					<a href="{:url('mobile/contact')}"><img src="/static/mobile/icons/navbar/contact.svg" alt="contact">{:lang('h-contact')}</a>
+				</div>
+			</div>
+		</div>
+
+		<div class="banner">
+			<img src="/static/mobile/images/exhibition/banner.png" alt="banner">
+		</div>
+		
+		<div class="info base-padding">
+			<div class="underline-title">{:lang('exhibition_news')}</div>
+			<div class="list">
+				{for start="1" end="8"}
+				<div class="list-item">
+					<div class="img-wrapper">
+						<img src="/static/mobile/images/exhibition/list-pic.png" alt="list-pic">
+					</div>
+					<div class="title">我们公司将参加第118届广交会，摊位如下，欢迎来我们摊位:</div>
+					<div class="detail">
+						<p>
+							第一期：10月15日-19日，滩位号: 14.2G01
+						</p>
+						<p>
+							第二期：10月23日-27日，滩位号: 5.1M18
+						</p>
+					</div>
+				</div>
+				{/for}
+			</div>
+		</div>
+
+		<div class="footer">
+			<div class="logo"></div>
+			<div class="name">{:lang('f-company_name')}</div>
+		</div>
+	</div>
+</body>
+</html>

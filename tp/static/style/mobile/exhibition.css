@@ -1,0 +1,45 @@
+.banner {
+	width: 100%;
+	position: relative;
+	font-size: 0;
+}
+
+.banner img {
+	width: 100%;
+}
+
+.info .list {
+	margin-top: 20px;
+}
+
+.info .list .list-item {
+	background-color: #fff;
+	padding: 9px 0 9px;
+	margin-bottom: 13px;
+}
+
+.info .list .list-item .img-wrapper {
+	margin: 0 9px 12px 9px;
+}
+
+.info .list .list-item .img-wrapper img {
+	width: 100%;
+}
+
+.info .list .list-item .title {
+	margin: 0 21px 9px;
+	height: 40px;
+	width: 280px;
+	font-size: 14px;
+	text-align: left;
+	font-family: PingFangSC-regular;
+}
+
+.info .list .list-item .detail {
+	margin: 0 21px 9px;
+	line-height: 24px;
+	color: rgba(16, 16, 16, 1);
+	font-size: 12px;
+	text-align: left;
+	font-family: PingFangSC-light;
+}

@@ -1,0 +1,63 @@
+.banner {
+	width: 100%;
+	position: relative;
+	font-size: 0;
+}
+
+.banner img {
+	width: 100%;
+}
+
+.product .products {
+	background-color: #fff;
+	text-align: center;
+}
+
+.product .products .series-selector {
+	width: 100%;
+	height: 32px;
+	background-color: rgba(255, 255, 255, 1);
+	color: rgba(65, 80, 88, 1);
+	font-size: 12px;
+	text-align: left;
+	font-family: PingFang SC;
+	border: 1px solid rgba(187, 187, 187, 1);
+	margin: 25px auto 0;
+	border-radius: 0;
+}
+
+.product .products .series-container {
+	display: flex;
+	flex-wrap: wrap;
+	margin: 15px -6px 0;
+	justify-content: space-between;
+}
+
+.product .products .series-container a {
+	flex-basis: 50%;
+	height: 40vw;
+}
+
+.product .products .series-container a .series-wrapper {
+	height: 100%;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 6px;
+}
+
+.product .products .series-container a .series-wrapper .series-item {
+	height: 100%;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: rgba(255, 255, 255, 1);
+	border: 1px solid rgba(187, 187, 187, 1);
+}
+
+.product .products .series-container a .series-wrapper .series-item img {
+	max-width: 80%;
+	max-height: 80%;
+}

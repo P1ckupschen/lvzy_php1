@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+	<title>{:lang('h-contact')}</title>
+	<link rel="stylesheet" href="/static/style/mobile/mobile.css"></link>
+	<link rel="stylesheet" href="/static/style/mobile/contact.css"></link>
+</head>
+<body>
+	<div class="contact base">
+		<div class="navbar">
+			<div class="logo"></div>
+			<div class="dropdown">
+				<input type="checkbox" name="btn" id="m-btn">
+				<label class="menu-btn" for="m-btn"></label>
+				<div class="dropdown-content">
+					<a href="{:url('mobile')}"><img src="/static/mobile/icons/navbar/home.svg" alt="home">{:lang('h-home')}</a>
+					<a href="{:url('mobile/about')}"><img src="/static/mobile/icons/navbar/about.svg" alt="about">{:lang('h-about')}</a>
+					<a href="{:url('mobile/product')}"><img src="/static/mobile/icons/navbar/product.svg" alt="product">{:lang('h-product')}</a>
+					<a href="{:url('mobile/exhibition')}"><img src="/static/mobile/icons/navbar/exhibition.svg" alt="exhibition">{:lang('h-exhibition')}</a>
+					<a href="{:url('mobile/contact')}"><img src="/static/mobile/icons/navbar/contact.svg" alt="contact">{:lang('h-contact')}</a>
+				</div>
+			</div>
+		</div>
+
+		<div class="banner">
+			<img src="/static/mobile/images/contact/banner.png" alt="banner">
+		</div>
+
+		<div class="info base-padding">
+			<div class="underline-title">联系我们</div>
+
+			<div class="list">
+				<div class="list-item">
+					<div class="icon">
+						<img src="/static/mobile/images/contact/phone.png" alt="phone">
+					</div>
+					<div class="label">{:lang('phone')}：</div>
+					<div class="content">0086-574-63287088</div>
+				</div>
+				<div class="list-item">
+					<div class="icon">
+						<img src="/static/mobile/images/contact/fax.png" alt="fax">
+					</div>
+					<div class="label">{:lang('fax')}：</div>
+					<div class="content">0086-574-63287765</div>
+				</div>
+				<div class="list-item">
+					<div class="icon">
+						<img src="/static/mobile/images/contact/mail.png" alt="mail">
+					</div>
+					<div class="label">{:lang('mail')}：</div>
+					<div class="content">gsgt@nblzy.com</div>
+				</div>
+			</div>
+
+			<div class="form">
+				<div class="name item">
+					<input type="text" placeholder="{:lang('ph_name')}">
+				</div>
+				<div class="mail item">
+					<input type="text" placeholder="{:lang('ph_mail')}">
+				</div>
+				<div class="content item">
+					<input type="text" placeholder="{:lang('ph_content')}">
+				</div>
+				<div class="submit-btn">{:lang('submit_btn')}</div>
+			</div>
+
+			<div class="map-wrapper" id="map">
+
+			</div>
+		</div>
+
+		
+		
+		<div class="footer">
+			<div class="logo"></div>
+			<div class="name">{:lang('f-company_name')}</div>
+		</div>
+	</div>
+
+
+	<!-- init map -->
+	<script src="https://webapi.amap.com/loader.js"></script>
+	<script type="text/javascript" >
+	AMapLoader.load({
+		"key": "f4a641dc246e0bb5762af876525d3b93",              // 申请好的Web端开发者Key，首次调用 load 时必填
+		// "version": "2.0",   // 指定要加载的 JSAPI 的版本，缺省时默认为 1.4.15, 1.4.15才有英文显示
+		"plugins": [],           // 需要使用的的插件列表，如比例尺'AMap.Scale'等
+		"AMapUI": {             // 是否加载 AMapUI，缺省不加载
+			"version": '1.1',   // AMapUI 版本
+			"plugins":['overlay/SimpleMarker'],       // 需要加载的 AMapUI ui插件
+		},
+	}).then((AMap)=>{
+			var map = new AMap.Map('map', {
+				center: [121.235724,30.219665],
+				zoom: 16,
+				lang: 'zh_en',
+			});
+			window.mmm = map
+			console.log(map)
+			// map.addControl(new AMap.Scale());
+			let marker = new AMap.Marker({
+				position: new AMap.LngLat(121.235724,30.219665),
+				title: "{:lang('f-company_name')}",
+			});
+			map.add(marker);
+			// map.on('click', (ev)=> {
+			// 	console.log('target:', ev.target);
+			// 	console.log('您在[ '+ev.lnglat.getLng()+','+ev.lnglat.getLat()+' ]的位置点击了地图！')
+			// });
+		}).catch((e)=>{
+			console.error(e);  //加载错误提示
+		});   
+	</script>
+</body>
+</html>

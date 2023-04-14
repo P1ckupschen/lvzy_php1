@@ -1,0 +1,86 @@
+.banner {
+	width: 100%;
+	position: relative;
+	font-size: 0;
+}
+
+.banner img {
+	width: 100%;
+}
+
+.info {
+	background-color: white;
+}
+
+.info .list {
+	padding-bottom: 12px;
+	margin-top: 25px;
+	margin-bottom: 10px;
+}
+
+.info .list .list-item {
+	display: flex;
+	margin-top: 15px;
+}
+
+.info .list .list-item .icon {
+	height: 15px;
+	width: 15px;
+	margin-right: 8px;
+}
+
+.info .list .list-item .icon img {
+	height: 100%;
+	width: 100%;
+}
+
+.info .list .list-item .label {
+	width: 70px;
+	height: 20px;
+	color: rgba(16, 16, 16, 1);
+	font-size: 14px;
+	margin-right: 8px;
+	font-weight: bold;
+}
+
+.info .form {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	margin-bottom: 30px;
+}
+
+.info .form .item input {
+	width: 100%;
+	border: none;
+	outline: none;
+	border-bottom: 1px solid #ddd;
+	padding: 7px 0;
+	font-size: 14px;
+	border-radius: 0;
+}
+
+.info .form .item {
+	padding: 5px 0;
+	margin-bottom: 30px;
+}
+
+
+.info .submit-btn {
+	width: 80px;
+	height: 30px;
+	line-height: 30px;
+	border-radius: 4px;
+	background-color: rgba(14, 125, 59, 1);
+	color: rgba(255, 255, 255, 1);
+	font-size: 12px;
+	text-align: center;
+	font-family: PingFang SC;
+}
+
+.info .map-wrapper {
+	width: 100%;
+	height: 200px;
+	margin-bottom: 20px;
+	/* background-color: red; */
+}

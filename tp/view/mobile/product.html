@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+	<title>{:lang('h-product')}</title>
+	<link rel="stylesheet" href="/static/style/mobile/mobile.css"></link>
+	<link rel="stylesheet" href="/static/style/mobile/product.css"></link>
+</head>
+<body>
+	<div class="product base">
+		<div class="navbar">
+			<div class="logo"></div>
+			<div class="dropdown">
+				<input type="checkbox" name="btn" id="m-btn">
+				<label class="menu-btn" for="m-btn"></label>
+				<div class="dropdown-content">
+					<a href="{:url('mobile')}"><img src="/static/mobile/icons/navbar/home.svg" alt="home">{:lang('h-home')}</a>
+					<a href="{:url('mobile/about')}"><img src="/static/mobile/icons/navbar/about.svg" alt="about">{:lang('h-about')}</a>
+					<a href="{:url('mobile/product')}"><img src="/static/mobile/icons/navbar/product.svg" alt="product">{:lang('h-product')}</a>
+					<a href="{:url('mobile/exhibition')}"><img src="/static/mobile/icons/navbar/exhibition.svg" alt="exhibition">{:lang('h-exhibition')}</a>
+					<a href="{:url('mobile/contact')}"><img src="/static/mobile/icons/navbar/contact.svg" alt="contact">{:lang('h-contact')}</a>
+				</div>
+			</div>
+		</div>
+
+		<div class="banner">
+			<img src="/static/mobile/images/product/banner.png" alt="banner">
+		</div>
+
+		<div class="products base-padding">
+			<div class="underline-title">{:lang('product_display')}</div>
+			<select name="product-series" id="product-series" class="series-selector">
+				<option value="1">{:lang('p-new')}</option>
+				<option value="2">{:lang('p-spray_nozzle_series')}</option>
+				<option value="3">{:lang('p-hose_nozzle_set')}</option>
+				<option value="4">{:lang('p-impulse_sprinkler_series')}</option>
+				<option value="5">{:lang('p-oscillating_sprinklers')}</option>
+				<option value="6">{:lang('p-water_wands_series')}</option>
+				<option value="7">{:lang('p-plastic_connecting_fitting_series')}</option>
+				<option value="8">{:lang('p-brass_fitting_series')}</option>
+				<option value="9">{:lang('p-brass_hose_series')}</option>
+				<option value="10">{:lang('p-hose')}</option>
+				<option value="11">{:lang('p-other')}</option>
+			</select>
+			<div class="series-container">
+				{for start='0' end='8'}
+				<a href="{:url('mobile/product_detail')}">
+					<div class="series-wrapper">
+						<div class="series-item">
+							<img src="/static/mobile/images/product/item-pic.png" alt="product-item">
+						</div>
+					</div>
+				</a>
+				{/for}
+			</div>
+		</div>
+		
+		<div class="footer">
+			<div class="logo"></div>
+			<div class="name">{:lang('f-company_name')}</div>
+		</div>
+	</div>
+</body>
+</html>

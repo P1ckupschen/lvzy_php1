@@ -1,0 +1,149 @@
+.banner {
+	width: 100%;
+	position: relative;
+}
+
+.banner img {
+	width: 100%;
+}
+
+.info-box {
+	background-color: white;
+	width: 100%;
+	text-align: center;
+}
+
+.info-box .logo {
+	margin: 0 auto 16px;
+	height: 28px;
+	width: 55px;
+	background: url('/static/mobile/images/logo.png') no-repeat center / contain;
+}
+
+.info-box .info-text {
+	margin-top: 24px;
+	font-size: 12px;
+	text-align: left;
+	font-family: PingFangSC-regular;
+	line-height: 26px;
+}
+
+.about .number-box {
+	/* background-color: #ffffff; */
+	/* box-shadow: 6px 6px 9px 0px #eee; */
+	margin-bottom: 30px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	height: 80px;
+}
+
+.about .number-box .number-item {
+	flex-basis: 30%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.about .number-box .number-item .row {
+	display: flex;
+	color: #177c3e;
+	justify-content: center;
+	align-items: baseline;
+}
+
+.about .number-box .number-item .row .num {
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.about .number-box .number-item .row .unit {
+	font-size: 18px;
+	font-weight: bold;
+	margin-left: 2px;
+}
+
+.about .number-box .number-item .text {
+	font-weight: 300;
+	color: #444;
+	font-size: 12px;
+	font-family: PingFangSC-regular;
+}
+
+.about .banner2 {
+	background: url('/static/mobile/images/about/banner2.png') no-repeat center / cover;
+}
+
+.about .banner2 .list {
+	display: flex;
+	flex-wrap: wrap;
+	margin: 0 -8px;
+}
+
+.about .banner2 .label-item {
+	flex-basis: 50%;
+	padding: 8px;
+}
+
+.about .banner2 .label-item .container {
+	background-color: rgba(255, 255, 255, 0.6);
+	height: 169px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	padding: 20px 20px 10px 20px;
+}
+
+.about .banner2 .label-item .container .logo img {
+	height: 30px;
+}
+
+.about .banner2 .label-item .container .label {
+	height: 20px;
+	color: rgba(16, 16, 16, 1);
+	font-size: 14px;
+	font-weight: bold;
+	margin-top: 10px;
+}
+
+.about .banner2 .label-item .container .content {
+	height: 68px;
+	color: rgba(16, 16, 16, 1);
+	font-size: 12px;
+	text-align: center;
+	font-family: PingFangSC-regular;
+	margin-top: 10px;
+}
+
+.about .workshop {
+	background-color: #fff;
+}
+
+.about .workshop .img-container {
+	margin: 25px -6px 0 -6px;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.about .workshop .img-container .img-wrapper {
+	padding: 6px;
+	font-size: 0;
+}
+
+.about .workshop .img-container .img-wrapper img {
+	width: 100%;
+}
+
+.about .workshop .img-container .small {
+	flex-basis: 50%;
+	max-height: 130px;
+	overflow: hidden;
+}
+
+.about .workshop .img-container .big {
+	flex-basis: 100%;
+	max-height: 191px;
+	overflow: hidden;
+}
